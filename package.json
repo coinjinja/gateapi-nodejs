@@ -19,7 +19,8 @@
     "license": "Unlicense",
     "dependencies": {
         "@types/node": "^8.10.48",
-        "axios": "^0.19.2"
+        "axios": "^0.19.2",
+        "react-native-url-polyfill": "github:ITJesse/react-native-url-polyfill#c5fe3e3"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^3.7.0",

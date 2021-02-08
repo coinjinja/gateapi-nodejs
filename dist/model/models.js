@@ -65,7 +65,7 @@ __exportStar(require("./triggerOrderResponse"), exports);
 __exportStar(require("./withdrawStatus"), exports);
 const querystring = require("querystring");
 const crypto = require("crypto");
-const url_1 = require("url");
+const react_native_url_polyfill_1 = require("react-native-url-polyfill");
 const batchOrder_1 = require("./batchOrder");
 const cancelOrder_1 = require("./cancelOrder");
 const cancelOrderResult_1 = require("./cancelOrderResult");
@@ -403,7 +403,7 @@ class GateApiV4Auth {
             return querystring.stringify(params);
         };
         const timestamp = (new Date().getTime() / 1000).toString();
-        const resourcePath = new url_1.URL(config.url).pathname;
+        const resourcePath = new react_native_url_polyfill_1.URL(config.url).pathname;
         const queryString = unescape(querystring.stringify(config.params));
         let bodyParam = '';
         if (config.data) {
