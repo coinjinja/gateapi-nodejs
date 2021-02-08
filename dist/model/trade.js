@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Trade = void 0;
-class Trade {
+export class Trade {
     static getAttributeTypeMap() {
         return Trade.attributeTypeMap;
     }
 }
-exports.Trade = Trade;
 Trade.discriminator = undefined;
 Trade.attributeTypeMap = [
     {
@@ -81,4 +77,4 @@ Trade.attributeTypeMap = [
         Role[Role["Taker"] = 'taker'] = "Taker";
         Role[Role["Maker"] = 'maker'] = "Maker";
     })(Role = Trade.Role || (Trade.Role = {}));
-})(Trade = exports.Trade || (exports.Trade = {}));
+})(Trade || (Trade = {}));

@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CancelOrderResult = void 0;
-class CancelOrderResult {
+export class CancelOrderResult {
     static getAttributeTypeMap() {
         return CancelOrderResult.attributeTypeMap;
     }
 }
-exports.CancelOrderResult = CancelOrderResult;
 CancelOrderResult.discriminator = undefined;
 CancelOrderResult.attributeTypeMap = [
     {

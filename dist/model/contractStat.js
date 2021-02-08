@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContractStat = void 0;
-class ContractStat {
+export class ContractStat {
     static getAttributeTypeMap() {
         return ContractStat.attributeTypeMap;
     }
 }
-exports.ContractStat = ContractStat;
 ContractStat.discriminator = undefined;
 ContractStat.attributeTypeMap = [
     {

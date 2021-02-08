@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.FuturesAccountBook = void 0;
-class FuturesAccountBook {
+export class FuturesAccountBook {
     static getAttributeTypeMap() {
         return FuturesAccountBook.attributeTypeMap;
     }
 }
-exports.FuturesAccountBook = FuturesAccountBook;
 FuturesAccountBook.discriminator = undefined;
 FuturesAccountBook.attributeTypeMap = [
     {
@@ -47,4 +43,4 @@ FuturesAccountBook.attributeTypeMap = [
         Type[Type["PointFee"] = 'point_fee'] = "PointFee";
         Type[Type["PointRefr"] = 'point_refr'] = "PointRefr";
     })(Type = FuturesAccountBook.Type || (FuturesAccountBook.Type = {}));
-})(FuturesAccountBook = exports.FuturesAccountBook || (exports.FuturesAccountBook = {}));
+})(FuturesAccountBook || (FuturesAccountBook = {}));

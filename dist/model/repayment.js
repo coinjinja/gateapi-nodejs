@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Repayment = void 0;
-class Repayment {
+export class Repayment {
     static getAttributeTypeMap() {
         return Repayment.attributeTypeMap;
     }
 }
-exports.Repayment = Repayment;
 Repayment.discriminator = undefined;
 Repayment.attributeTypeMap = [
     {

@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.FuturesTicker = void 0;
-class FuturesTicker {
+export class FuturesTicker {
     static getAttributeTypeMap() {
         return FuturesTicker.attributeTypeMap;
     }
 }
-exports.FuturesTicker = FuturesTicker;
 FuturesTicker.discriminator = undefined;
 FuturesTicker.attributeTypeMap = [
     {

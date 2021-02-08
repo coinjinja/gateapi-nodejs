@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TriggerOrderResponse = void 0;
-class TriggerOrderResponse {
+export class TriggerOrderResponse {
     static getAttributeTypeMap() {
         return TriggerOrderResponse.attributeTypeMap;
     }
 }
-exports.TriggerOrderResponse = TriggerOrderResponse;
 TriggerOrderResponse.discriminator = undefined;
 TriggerOrderResponse.attributeTypeMap = [
     {

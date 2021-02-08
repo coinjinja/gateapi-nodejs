@@ -1,220 +1,208 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GateApiV4Auth = exports.OAuth = exports.ApiKeyAuth = exports.HttpBearerAuth = exports.HttpBasicAuth = exports.ObjectSerializer = void 0;
-__exportStar(require("./batchOrder"), exports);
-__exportStar(require("./cancelOrder"), exports);
-__exportStar(require("./cancelOrderResult"), exports);
-__exportStar(require("./contract"), exports);
-__exportStar(require("./contractStat"), exports);
-__exportStar(require("./currency"), exports);
-__exportStar(require("./currencyPair"), exports);
-__exportStar(require("./deliveryContract"), exports);
-__exportStar(require("./deliverySettlement"), exports);
-__exportStar(require("./depositAddress"), exports);
-__exportStar(require("./fundingAccount"), exports);
-__exportStar(require("./fundingBookItem"), exports);
-__exportStar(require("./fundingRateRecord"), exports);
-__exportStar(require("./futuresAccount"), exports);
-__exportStar(require("./futuresAccountBook"), exports);
-__exportStar(require("./futuresCandlestick"), exports);
-__exportStar(require("./futuresInitialOrder"), exports);
-__exportStar(require("./futuresLiquidate"), exports);
-__exportStar(require("./futuresOrder"), exports);
-__exportStar(require("./futuresOrderBook"), exports);
-__exportStar(require("./futuresOrderBookItem"), exports);
-__exportStar(require("./futuresPriceTrigger"), exports);
-__exportStar(require("./futuresPriceTriggeredOrder"), exports);
-__exportStar(require("./futuresTicker"), exports);
-__exportStar(require("./futuresTrade"), exports);
-__exportStar(require("./insuranceRecord"), exports);
-__exportStar(require("./ledgerRecord"), exports);
-__exportStar(require("./loan"), exports);
-__exportStar(require("./loanPatch"), exports);
-__exportStar(require("./loanRecord"), exports);
-__exportStar(require("./marginAccount"), exports);
-__exportStar(require("./marginAccountBook"), exports);
-__exportStar(require("./marginAccountCurrency"), exports);
-__exportStar(require("./marginCurrencyPair"), exports);
-__exportStar(require("./myFuturesTrade"), exports);
-__exportStar(require("./openOrders"), exports);
-__exportStar(require("./order"), exports);
-__exportStar(require("./orderBook"), exports);
-__exportStar(require("./position"), exports);
-__exportStar(require("./positionClose"), exports);
-__exportStar(require("./positionCloseOrder"), exports);
-__exportStar(require("./repayRequest"), exports);
-__exportStar(require("./repayment"), exports);
-__exportStar(require("./spotAccount"), exports);
-__exportStar(require("./subAccountBalance"), exports);
-__exportStar(require("./subAccountTransfer"), exports);
-__exportStar(require("./ticker"), exports);
-__exportStar(require("./trade"), exports);
-__exportStar(require("./tradeFee"), exports);
-__exportStar(require("./transfer"), exports);
-__exportStar(require("./triggerOrderResponse"), exports);
-__exportStar(require("./withdrawStatus"), exports);
-const querystring = require("querystring");
-const crypto = require("crypto");
-const batchOrder_1 = require("./batchOrder");
-const cancelOrder_1 = require("./cancelOrder");
-const cancelOrderResult_1 = require("./cancelOrderResult");
-const contract_1 = require("./contract");
-const contractStat_1 = require("./contractStat");
-const currency_1 = require("./currency");
-const currencyPair_1 = require("./currencyPair");
-const deliveryContract_1 = require("./deliveryContract");
-const deliverySettlement_1 = require("./deliverySettlement");
-const depositAddress_1 = require("./depositAddress");
-const fundingAccount_1 = require("./fundingAccount");
-const fundingBookItem_1 = require("./fundingBookItem");
-const fundingRateRecord_1 = require("./fundingRateRecord");
-const futuresAccount_1 = require("./futuresAccount");
-const futuresAccountBook_1 = require("./futuresAccountBook");
-const futuresCandlestick_1 = require("./futuresCandlestick");
-const futuresInitialOrder_1 = require("./futuresInitialOrder");
-const futuresLiquidate_1 = require("./futuresLiquidate");
-const futuresOrder_1 = require("./futuresOrder");
-const futuresOrderBook_1 = require("./futuresOrderBook");
-const futuresOrderBookItem_1 = require("./futuresOrderBookItem");
-const futuresPriceTrigger_1 = require("./futuresPriceTrigger");
-const futuresPriceTriggeredOrder_1 = require("./futuresPriceTriggeredOrder");
-const futuresTicker_1 = require("./futuresTicker");
-const futuresTrade_1 = require("./futuresTrade");
-const insuranceRecord_1 = require("./insuranceRecord");
-const ledgerRecord_1 = require("./ledgerRecord");
-const loan_1 = require("./loan");
-const loanPatch_1 = require("./loanPatch");
-const loanRecord_1 = require("./loanRecord");
-const marginAccount_1 = require("./marginAccount");
-const marginAccountBook_1 = require("./marginAccountBook");
-const marginAccountCurrency_1 = require("./marginAccountCurrency");
-const marginCurrencyPair_1 = require("./marginCurrencyPair");
-const myFuturesTrade_1 = require("./myFuturesTrade");
-const openOrders_1 = require("./openOrders");
-const order_1 = require("./order");
-const orderBook_1 = require("./orderBook");
-const position_1 = require("./position");
-const positionClose_1 = require("./positionClose");
-const positionCloseOrder_1 = require("./positionCloseOrder");
-const repayRequest_1 = require("./repayRequest");
-const repayment_1 = require("./repayment");
-const spotAccount_1 = require("./spotAccount");
-const subAccountBalance_1 = require("./subAccountBalance");
-const subAccountTransfer_1 = require("./subAccountTransfer");
-const ticker_1 = require("./ticker");
-const trade_1 = require("./trade");
-const tradeFee_1 = require("./tradeFee");
-const transfer_1 = require("./transfer");
-const triggerOrderResponse_1 = require("./triggerOrderResponse");
-const withdrawStatus_1 = require("./withdrawStatus");
+export * from './batchOrder';
+export * from './cancelOrder';
+export * from './cancelOrderResult';
+export * from './contract';
+export * from './contractStat';
+export * from './currency';
+export * from './currencyPair';
+export * from './deliveryContract';
+export * from './deliverySettlement';
+export * from './depositAddress';
+export * from './fundingAccount';
+export * from './fundingBookItem';
+export * from './fundingRateRecord';
+export * from './futuresAccount';
+export * from './futuresAccountBook';
+export * from './futuresCandlestick';
+export * from './futuresInitialOrder';
+export * from './futuresLiquidate';
+export * from './futuresOrder';
+export * from './futuresOrderBook';
+export * from './futuresOrderBookItem';
+export * from './futuresPriceTrigger';
+export * from './futuresPriceTriggeredOrder';
+export * from './futuresTicker';
+export * from './futuresTrade';
+export * from './insuranceRecord';
+export * from './ledgerRecord';
+export * from './loan';
+export * from './loanPatch';
+export * from './loanRecord';
+export * from './marginAccount';
+export * from './marginAccountBook';
+export * from './marginAccountCurrency';
+export * from './marginCurrencyPair';
+export * from './myFuturesTrade';
+export * from './openOrders';
+export * from './order';
+export * from './orderBook';
+export * from './position';
+export * from './positionClose';
+export * from './positionCloseOrder';
+export * from './repayRequest';
+export * from './repayment';
+export * from './spotAccount';
+export * from './subAccountBalance';
+export * from './subAccountTransfer';
+export * from './ticker';
+export * from './trade';
+export * from './tradeFee';
+export * from './transfer';
+export * from './triggerOrderResponse';
+export * from './withdrawStatus';
+import * as querystring from 'querystring';
+import * as crypto from 'crypto';
+import { URL } from 'url';
+import { BatchOrder } from './batchOrder';
+import { CancelOrder } from './cancelOrder';
+import { CancelOrderResult } from './cancelOrderResult';
+import { Contract } from './contract';
+import { ContractStat } from './contractStat';
+import { Currency } from './currency';
+import { CurrencyPair } from './currencyPair';
+import { DeliveryContract } from './deliveryContract';
+import { DeliverySettlement } from './deliverySettlement';
+import { DepositAddress } from './depositAddress';
+import { FundingAccount } from './fundingAccount';
+import { FundingBookItem } from './fundingBookItem';
+import { FundingRateRecord } from './fundingRateRecord';
+import { FuturesAccount } from './futuresAccount';
+import { FuturesAccountBook } from './futuresAccountBook';
+import { FuturesCandlestick } from './futuresCandlestick';
+import { FuturesInitialOrder } from './futuresInitialOrder';
+import { FuturesLiquidate } from './futuresLiquidate';
+import { FuturesOrder } from './futuresOrder';
+import { FuturesOrderBook } from './futuresOrderBook';
+import { FuturesOrderBookItem } from './futuresOrderBookItem';
+import { FuturesPriceTrigger } from './futuresPriceTrigger';
+import { FuturesPriceTriggeredOrder } from './futuresPriceTriggeredOrder';
+import { FuturesTicker } from './futuresTicker';
+import { FuturesTrade } from './futuresTrade';
+import { InsuranceRecord } from './insuranceRecord';
+import { LedgerRecord } from './ledgerRecord';
+import { Loan } from './loan';
+import { LoanPatch } from './loanPatch';
+import { LoanRecord } from './loanRecord';
+import { MarginAccount } from './marginAccount';
+import { MarginAccountBook } from './marginAccountBook';
+import { MarginAccountCurrency } from './marginAccountCurrency';
+import { MarginCurrencyPair } from './marginCurrencyPair';
+import { MyFuturesTrade } from './myFuturesTrade';
+import { OpenOrders } from './openOrders';
+import { Order } from './order';
+import { OrderBook } from './orderBook';
+import { Position } from './position';
+import { PositionClose } from './positionClose';
+import { PositionCloseOrder } from './positionCloseOrder';
+import { RepayRequest } from './repayRequest';
+import { Repayment } from './repayment';
+import { SpotAccount } from './spotAccount';
+import { SubAccountBalance } from './subAccountBalance';
+import { SubAccountTransfer } from './subAccountTransfer';
+import { Ticker } from './ticker';
+import { Trade } from './trade';
+import { TradeFee } from './tradeFee';
+import { Transfer } from './transfer';
+import { TriggerOrderResponse } from './triggerOrderResponse';
+import { WithdrawStatus } from './withdrawStatus';
 const primitives = ['string', 'boolean', 'double', 'integer', 'long', 'float', 'number', 'any'];
 const enumsMap = {
-    'BatchOrder.Status': batchOrder_1.BatchOrder.Status,
-    'BatchOrder.Type': batchOrder_1.BatchOrder.Type,
-    'BatchOrder.Account': batchOrder_1.BatchOrder.Account,
-    'BatchOrder.Side': batchOrder_1.BatchOrder.Side,
-    'BatchOrder.TimeInForce': batchOrder_1.BatchOrder.TimeInForce,
-    'Contract.Type': contract_1.Contract.Type,
-    'Contract.MarkType': contract_1.Contract.MarkType,
-    'CurrencyPair.TradeStatus': currencyPair_1.CurrencyPair.TradeStatus,
-    'DeliveryContract.Cycle': deliveryContract_1.DeliveryContract.Cycle,
-    'DeliveryContract.Type': deliveryContract_1.DeliveryContract.Type,
-    'DeliveryContract.MarkType': deliveryContract_1.DeliveryContract.MarkType,
-    'FuturesAccountBook.Type': futuresAccountBook_1.FuturesAccountBook.Type,
-    'FuturesInitialOrder.Tif': futuresInitialOrder_1.FuturesInitialOrder.Tif,
-    'FuturesOrder.FinishAs': futuresOrder_1.FuturesOrder.FinishAs,
-    'FuturesOrder.Status': futuresOrder_1.FuturesOrder.Status,
-    'FuturesOrder.Tif': futuresOrder_1.FuturesOrder.Tif,
-    'FuturesPriceTrigger.StrategyType': futuresPriceTrigger_1.FuturesPriceTrigger.StrategyType,
-    'FuturesPriceTrigger.PriceType': futuresPriceTrigger_1.FuturesPriceTrigger.PriceType,
-    'FuturesPriceTrigger.Rule': futuresPriceTrigger_1.FuturesPriceTrigger.Rule,
-    'FuturesPriceTriggeredOrder.Status': futuresPriceTriggeredOrder_1.FuturesPriceTriggeredOrder.Status,
-    'FuturesPriceTriggeredOrder.FinishAs': futuresPriceTriggeredOrder_1.FuturesPriceTriggeredOrder.FinishAs,
-    'LedgerRecord.Status': ledgerRecord_1.LedgerRecord.Status,
-    'Loan.Status': loan_1.Loan.Status,
-    'Loan.Side': loan_1.Loan.Side,
-    'LoanPatch.Side': loanPatch_1.LoanPatch.Side,
-    'LoanRecord.Status': loanRecord_1.LoanRecord.Status,
-    'MyFuturesTrade.Role': myFuturesTrade_1.MyFuturesTrade.Role,
-    'Order.Status': order_1.Order.Status,
-    'Order.Type': order_1.Order.Type,
-    'Order.Account': order_1.Order.Account,
-    'Order.Side': order_1.Order.Side,
-    'Order.TimeInForce': order_1.Order.TimeInForce,
-    'Position.Mode': position_1.Position.Mode,
-    'PositionClose.Side': positionClose_1.PositionClose.Side,
-    'RepayRequest.Mode': repayRequest_1.RepayRequest.Mode,
-    'SubAccountTransfer.Direction': subAccountTransfer_1.SubAccountTransfer.Direction,
-    'Trade.Side': trade_1.Trade.Side,
-    'Trade.Role': trade_1.Trade.Role,
-    'Transfer.From': transfer_1.Transfer.From,
-    'Transfer.To': transfer_1.Transfer.To,
+    'BatchOrder.Status': BatchOrder.Status,
+    'BatchOrder.Type': BatchOrder.Type,
+    'BatchOrder.Account': BatchOrder.Account,
+    'BatchOrder.Side': BatchOrder.Side,
+    'BatchOrder.TimeInForce': BatchOrder.TimeInForce,
+    'Contract.Type': Contract.Type,
+    'Contract.MarkType': Contract.MarkType,
+    'CurrencyPair.TradeStatus': CurrencyPair.TradeStatus,
+    'DeliveryContract.Cycle': DeliveryContract.Cycle,
+    'DeliveryContract.Type': DeliveryContract.Type,
+    'DeliveryContract.MarkType': DeliveryContract.MarkType,
+    'FuturesAccountBook.Type': FuturesAccountBook.Type,
+    'FuturesInitialOrder.Tif': FuturesInitialOrder.Tif,
+    'FuturesOrder.FinishAs': FuturesOrder.FinishAs,
+    'FuturesOrder.Status': FuturesOrder.Status,
+    'FuturesOrder.Tif': FuturesOrder.Tif,
+    'FuturesPriceTrigger.StrategyType': FuturesPriceTrigger.StrategyType,
+    'FuturesPriceTrigger.PriceType': FuturesPriceTrigger.PriceType,
+    'FuturesPriceTrigger.Rule': FuturesPriceTrigger.Rule,
+    'FuturesPriceTriggeredOrder.Status': FuturesPriceTriggeredOrder.Status,
+    'FuturesPriceTriggeredOrder.FinishAs': FuturesPriceTriggeredOrder.FinishAs,
+    'LedgerRecord.Status': LedgerRecord.Status,
+    'Loan.Status': Loan.Status,
+    'Loan.Side': Loan.Side,
+    'LoanPatch.Side': LoanPatch.Side,
+    'LoanRecord.Status': LoanRecord.Status,
+    'MyFuturesTrade.Role': MyFuturesTrade.Role,
+    'Order.Status': Order.Status,
+    'Order.Type': Order.Type,
+    'Order.Account': Order.Account,
+    'Order.Side': Order.Side,
+    'Order.TimeInForce': Order.TimeInForce,
+    'Position.Mode': Position.Mode,
+    'PositionClose.Side': PositionClose.Side,
+    'RepayRequest.Mode': RepayRequest.Mode,
+    'SubAccountTransfer.Direction': SubAccountTransfer.Direction,
+    'Trade.Side': Trade.Side,
+    'Trade.Role': Trade.Role,
+    'Transfer.From': Transfer.From,
+    'Transfer.To': Transfer.To,
 };
 const typeMap = {
-    BatchOrder: batchOrder_1.BatchOrder,
-    CancelOrder: cancelOrder_1.CancelOrder,
-    CancelOrderResult: cancelOrderResult_1.CancelOrderResult,
-    Contract: contract_1.Contract,
-    ContractStat: contractStat_1.ContractStat,
-    Currency: currency_1.Currency,
-    CurrencyPair: currencyPair_1.CurrencyPair,
-    DeliveryContract: deliveryContract_1.DeliveryContract,
-    DeliverySettlement: deliverySettlement_1.DeliverySettlement,
-    DepositAddress: depositAddress_1.DepositAddress,
-    FundingAccount: fundingAccount_1.FundingAccount,
-    FundingBookItem: fundingBookItem_1.FundingBookItem,
-    FundingRateRecord: fundingRateRecord_1.FundingRateRecord,
-    FuturesAccount: futuresAccount_1.FuturesAccount,
-    FuturesAccountBook: futuresAccountBook_1.FuturesAccountBook,
-    FuturesCandlestick: futuresCandlestick_1.FuturesCandlestick,
-    FuturesInitialOrder: futuresInitialOrder_1.FuturesInitialOrder,
-    FuturesLiquidate: futuresLiquidate_1.FuturesLiquidate,
-    FuturesOrder: futuresOrder_1.FuturesOrder,
-    FuturesOrderBook: futuresOrderBook_1.FuturesOrderBook,
-    FuturesOrderBookItem: futuresOrderBookItem_1.FuturesOrderBookItem,
-    FuturesPriceTrigger: futuresPriceTrigger_1.FuturesPriceTrigger,
-    FuturesPriceTriggeredOrder: futuresPriceTriggeredOrder_1.FuturesPriceTriggeredOrder,
-    FuturesTicker: futuresTicker_1.FuturesTicker,
-    FuturesTrade: futuresTrade_1.FuturesTrade,
-    InsuranceRecord: insuranceRecord_1.InsuranceRecord,
-    LedgerRecord: ledgerRecord_1.LedgerRecord,
-    Loan: loan_1.Loan,
-    LoanPatch: loanPatch_1.LoanPatch,
-    LoanRecord: loanRecord_1.LoanRecord,
-    MarginAccount: marginAccount_1.MarginAccount,
-    MarginAccountBook: marginAccountBook_1.MarginAccountBook,
-    MarginAccountCurrency: marginAccountCurrency_1.MarginAccountCurrency,
-    MarginCurrencyPair: marginCurrencyPair_1.MarginCurrencyPair,
-    MyFuturesTrade: myFuturesTrade_1.MyFuturesTrade,
-    OpenOrders: openOrders_1.OpenOrders,
-    Order: order_1.Order,
-    OrderBook: orderBook_1.OrderBook,
-    Position: position_1.Position,
-    PositionClose: positionClose_1.PositionClose,
-    PositionCloseOrder: positionCloseOrder_1.PositionCloseOrder,
-    RepayRequest: repayRequest_1.RepayRequest,
-    Repayment: repayment_1.Repayment,
-    SpotAccount: spotAccount_1.SpotAccount,
-    SubAccountBalance: subAccountBalance_1.SubAccountBalance,
-    SubAccountTransfer: subAccountTransfer_1.SubAccountTransfer,
-    Ticker: ticker_1.Ticker,
-    Trade: trade_1.Trade,
-    TradeFee: tradeFee_1.TradeFee,
-    Transfer: transfer_1.Transfer,
-    TriggerOrderResponse: triggerOrderResponse_1.TriggerOrderResponse,
-    WithdrawStatus: withdrawStatus_1.WithdrawStatus,
+    BatchOrder: BatchOrder,
+    CancelOrder: CancelOrder,
+    CancelOrderResult: CancelOrderResult,
+    Contract: Contract,
+    ContractStat: ContractStat,
+    Currency: Currency,
+    CurrencyPair: CurrencyPair,
+    DeliveryContract: DeliveryContract,
+    DeliverySettlement: DeliverySettlement,
+    DepositAddress: DepositAddress,
+    FundingAccount: FundingAccount,
+    FundingBookItem: FundingBookItem,
+    FundingRateRecord: FundingRateRecord,
+    FuturesAccount: FuturesAccount,
+    FuturesAccountBook: FuturesAccountBook,
+    FuturesCandlestick: FuturesCandlestick,
+    FuturesInitialOrder: FuturesInitialOrder,
+    FuturesLiquidate: FuturesLiquidate,
+    FuturesOrder: FuturesOrder,
+    FuturesOrderBook: FuturesOrderBook,
+    FuturesOrderBookItem: FuturesOrderBookItem,
+    FuturesPriceTrigger: FuturesPriceTrigger,
+    FuturesPriceTriggeredOrder: FuturesPriceTriggeredOrder,
+    FuturesTicker: FuturesTicker,
+    FuturesTrade: FuturesTrade,
+    InsuranceRecord: InsuranceRecord,
+    LedgerRecord: LedgerRecord,
+    Loan: Loan,
+    LoanPatch: LoanPatch,
+    LoanRecord: LoanRecord,
+    MarginAccount: MarginAccount,
+    MarginAccountBook: MarginAccountBook,
+    MarginAccountCurrency: MarginAccountCurrency,
+    MarginCurrencyPair: MarginCurrencyPair,
+    MyFuturesTrade: MyFuturesTrade,
+    OpenOrders: OpenOrders,
+    Order: Order,
+    OrderBook: OrderBook,
+    Position: Position,
+    PositionClose: PositionClose,
+    PositionCloseOrder: PositionCloseOrder,
+    RepayRequest: RepayRequest,
+    Repayment: Repayment,
+    SpotAccount: SpotAccount,
+    SubAccountBalance: SubAccountBalance,
+    SubAccountTransfer: SubAccountTransfer,
+    Ticker: Ticker,
+    Trade: Trade,
+    TradeFee: TradeFee,
+    Transfer: Transfer,
+    TriggerOrderResponse: TriggerOrderResponse,
+    WithdrawStatus: WithdrawStatus,
 };
-class ObjectSerializer {
+export class ObjectSerializer {
     static findCorrectType(data, expectedType) {
         if (data == undefined) {
             return expectedType;
@@ -327,8 +315,7 @@ class ObjectSerializer {
         }
     }
 }
-exports.ObjectSerializer = ObjectSerializer;
-class HttpBasicAuth {
+export class HttpBasicAuth {
     constructor() {
         this.username = '';
         this.password = '';
@@ -341,8 +328,7 @@ class HttpBasicAuth {
         return config;
     }
 }
-exports.HttpBasicAuth = HttpBasicAuth;
-class HttpBearerAuth {
+export class HttpBearerAuth {
     constructor() {
         this.accessToken = '';
     }
@@ -354,8 +340,7 @@ class HttpBearerAuth {
         return config;
     }
 }
-exports.HttpBearerAuth = HttpBearerAuth;
-class ApiKeyAuth {
+export class ApiKeyAuth {
     constructor(location, paramName) {
         this.location = location;
         this.paramName = paramName;
@@ -379,8 +364,7 @@ class ApiKeyAuth {
         return config;
     }
 }
-exports.ApiKeyAuth = ApiKeyAuth;
-class OAuth {
+export class OAuth {
     constructor() {
         this.accessToken = '';
     }
@@ -391,8 +375,7 @@ class OAuth {
         return config;
     }
 }
-exports.OAuth = OAuth;
-class GateApiV4Auth {
+export class GateApiV4Auth {
     constructor() {
         this.key = '';
         this.secret = '';
@@ -420,4 +403,3 @@ class GateApiV4Auth {
         return config;
     }
 }
-exports.GateApiV4Auth = GateApiV4Auth;

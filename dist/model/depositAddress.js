@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DepositAddress = void 0;
-class DepositAddress {
+export class DepositAddress {
     static getAttributeTypeMap() {
         return DepositAddress.attributeTypeMap;
     }
 }
-exports.DepositAddress = DepositAddress;
 DepositAddress.discriminator = undefined;
 DepositAddress.attributeTypeMap = [
     {

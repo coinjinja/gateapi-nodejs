@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.BatchOrder = void 0;
-class BatchOrder {
+export class BatchOrder {
     static getAttributeTypeMap() {
         return BatchOrder.attributeTypeMap;
     }
 }
-exports.BatchOrder = BatchOrder;
 BatchOrder.discriminator = undefined;
 BatchOrder.attributeTypeMap = [
     {
@@ -172,4 +168,4 @@ BatchOrder.attributeTypeMap = [
         TimeInForce[TimeInForce["Ioc"] = 'ioc'] = "Ioc";
         TimeInForce[TimeInForce["Poc"] = 'poc'] = "Poc";
     })(TimeInForce = BatchOrder.TimeInForce || (BatchOrder.TimeInForce = {}));
-})(BatchOrder = exports.BatchOrder || (exports.BatchOrder = {}));
+})(BatchOrder || (BatchOrder = {}));

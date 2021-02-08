@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MarginAccountBook = void 0;
-class MarginAccountBook {
+export class MarginAccountBook {
     static getAttributeTypeMap() {
         return MarginAccountBook.attributeTypeMap;
     }
 }
-exports.MarginAccountBook = MarginAccountBook;
 MarginAccountBook.discriminator = undefined;
 MarginAccountBook.attributeTypeMap = [
     {

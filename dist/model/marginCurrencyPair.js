@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MarginCurrencyPair = void 0;
-class MarginCurrencyPair {
+export class MarginCurrencyPair {
     static getAttributeTypeMap() {
         return MarginCurrencyPair.attributeTypeMap;
     }
 }
-exports.MarginCurrencyPair = MarginCurrencyPair;
 MarginCurrencyPair.discriminator = undefined;
 MarginCurrencyPair.attributeTypeMap = [
     {

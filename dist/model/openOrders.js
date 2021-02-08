@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.OpenOrders = void 0;
-class OpenOrders {
+export class OpenOrders {
     static getAttributeTypeMap() {
         return OpenOrders.attributeTypeMap;
     }
 }
-exports.OpenOrders = OpenOrders;
 OpenOrders.discriminator = undefined;
 OpenOrders.attributeTypeMap = [
     {

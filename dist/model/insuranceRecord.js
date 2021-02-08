@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.InsuranceRecord = void 0;
-class InsuranceRecord {
+export class InsuranceRecord {
     static getAttributeTypeMap() {
         return InsuranceRecord.attributeTypeMap;
     }
 }
-exports.InsuranceRecord = InsuranceRecord;
 InsuranceRecord.discriminator = undefined;
 InsuranceRecord.attributeTypeMap = [
     {

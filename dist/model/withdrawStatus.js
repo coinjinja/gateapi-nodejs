@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.WithdrawStatus = void 0;
-class WithdrawStatus {
+export class WithdrawStatus {
     static getAttributeTypeMap() {
         return WithdrawStatus.attributeTypeMap;
     }
 }
-exports.WithdrawStatus = WithdrawStatus;
 WithdrawStatus.discriminator = undefined;
 WithdrawStatus.attributeTypeMap = [
     {

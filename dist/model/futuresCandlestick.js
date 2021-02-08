@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.FuturesCandlestick = void 0;
-class FuturesCandlestick {
+export class FuturesCandlestick {
     static getAttributeTypeMap() {
         return FuturesCandlestick.attributeTypeMap;
     }
 }
-exports.FuturesCandlestick = FuturesCandlestick;
 FuturesCandlestick.discriminator = undefined;
 FuturesCandlestick.attributeTypeMap = [
     {

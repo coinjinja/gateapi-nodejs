@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeliverySettlement = void 0;
-class DeliverySettlement {
+export class DeliverySettlement {
     static getAttributeTypeMap() {
         return DeliverySettlement.attributeTypeMap;
     }
 }
-exports.DeliverySettlement = DeliverySettlement;
 DeliverySettlement.discriminator = undefined;
 DeliverySettlement.attributeTypeMap = [
     {

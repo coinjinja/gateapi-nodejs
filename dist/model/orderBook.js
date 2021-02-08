@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderBook = void 0;
-class OrderBook {
+export class OrderBook {
     static getAttributeTypeMap() {
         return OrderBook.attributeTypeMap;
     }
 }
-exports.OrderBook = OrderBook;
 OrderBook.discriminator = undefined;
 OrderBook.attributeTypeMap = [
     {

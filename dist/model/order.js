@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Order = void 0;
-class Order {
+export class Order {
     static getAttributeTypeMap() {
         return Order.attributeTypeMap;
     }
 }
-exports.Order = Order;
 Order.discriminator = undefined;
 Order.attributeTypeMap = [
     {
@@ -157,4 +153,4 @@ Order.attributeTypeMap = [
         TimeInForce[TimeInForce["Ioc"] = 'ioc'] = "Ioc";
         TimeInForce[TimeInForce["Poc"] = 'poc'] = "Poc";
     })(TimeInForce = Order.TimeInForce || (Order.TimeInForce = {}));
-})(Order = exports.Order || (exports.Order = {}));
+})(Order || (Order = {}));

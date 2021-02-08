@@ -1,12 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.FuturesPriceTrigger = void 0;
-class FuturesPriceTrigger {
+export class FuturesPriceTrigger {
     static getAttributeTypeMap() {
         return FuturesPriceTrigger.attributeTypeMap;
     }
 }
-exports.FuturesPriceTrigger = FuturesPriceTrigger;
 FuturesPriceTrigger.discriminator = undefined;
 FuturesPriceTrigger.attributeTypeMap = [
     {
@@ -52,4 +48,4 @@ FuturesPriceTrigger.attributeTypeMap = [
         Rule[Rule["NUMBER_1"] = 1] = "NUMBER_1";
         Rule[Rule["NUMBER_2"] = 2] = "NUMBER_2";
     })(Rule = FuturesPriceTrigger.Rule || (FuturesPriceTrigger.Rule = {}));
-})(FuturesPriceTrigger = exports.FuturesPriceTrigger || (exports.FuturesPriceTrigger = {}));
+})(FuturesPriceTrigger || (FuturesPriceTrigger = {}));
