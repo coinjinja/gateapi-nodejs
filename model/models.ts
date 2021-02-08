@@ -54,7 +54,7 @@ export * from './withdrawStatus';
 import { AxiosRequestConfig } from 'axios';
 import querystring = require('querystring');
 import crypto = require('crypto');
-import { URL } from 'url';
+import { URL } from 'react-native-url-polyfill';
 
 import { BatchOrder } from './batchOrder';
 import { CancelOrder } from './cancelOrder';
