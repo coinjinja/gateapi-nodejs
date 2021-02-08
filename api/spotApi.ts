@@ -13,6 +13,7 @@
 import { BatchOrder } from '../model/batchOrder';
 import { CancelOrder } from '../model/cancelOrder';
 import { CancelOrderResult } from '../model/cancelOrderResult';
+import { Currency } from '../model/currency';
 import { CurrencyPair } from '../model/currencyPair';
 import { OpenOrders } from '../model/openOrders';
 import { Order } from '../model/order';
@@ -38,6 +39,68 @@ export class SpotApi {
         } else {
             this.client = new ApiClient();
         }
+    }
+
+    /**
+     *
+     * @summary List all currencies\' detail
+     */
+    public async listCurrencies(): Promise<{ response: AxiosResponse; body: Array<Currency> }> {
+        const localVarPath = this.client.basePath + '/spot/currencies';
+        const localVarQueryParameters: any = {};
+        const localVarHeaderParams: any = (<any>Object).assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        const config: AxiosRequestConfig = {
+            method: 'GET',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+
+        const authSettings = [];
+        return this.client.request<Array<Currency>>(config, 'Array<Currency>', authSettings);
+    }
+
+    /**
+     *
+     * @summary Get detail of one particular currency
+     * @param currency Currency name
+     */
+    public async getCurrency(currency: string): Promise<{ response: AxiosResponse; body: Currency }> {
+        const localVarPath =
+            this.client.basePath +
+            '/spot/currencies/{currency}'.replace('{' + 'currency' + '}', encodeURIComponent(String(currency)));
+        const localVarQueryParameters: any = {};
+        const localVarHeaderParams: any = (<any>Object).assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        // give precedence to 'application/json'
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        } else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+
+        // verify required parameter 'currency' is not null or undefined
+        if (currency === null || currency === undefined) {
+            throw new Error('Required parameter currency was null or undefined when calling getCurrency.');
+        }
+
+        const config: AxiosRequestConfig = {
+            method: 'GET',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+
+        const authSettings = [];
+        return this.client.request<Currency>(config, 'Currency', authSettings);
     }
 
     /**
@@ -148,10 +211,11 @@ export class SpotApi {
      * @param opts Optional parameters
      * @param opts.interval Order depth. 0 means no aggregation is applied. default to 0
      * @param opts.limit Maximum number of order depth data in asks or bids
+     * @param opts.withId Return order book ID
      */
     public async listOrderBook(
         currencyPair: string,
-        opts: { interval?: string; limit?: number },
+        opts: { interval?: string; limit?: number; withId?: boolean },
     ): Promise<{ response: AxiosResponse; body: OrderBook }> {
         const localVarPath = this.client.basePath + '/spot/order_book';
         const localVarQueryParameters: any = {};
@@ -180,6 +244,10 @@ export class SpotApi {
             localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
         }
 
+        if (opts.withId !== undefined) {
+            localVarQueryParameters['with_id'] = ObjectSerializer.serialize(opts.withId, 'boolean');
+        }
+
         const config: AxiosRequestConfig = {
             method: 'GET',
             params: localVarQueryParameters,
@@ -198,10 +266,11 @@ export class SpotApi {
      * @param opts Optional parameters
      * @param opts.limit Maximum number of records returned in one list
      * @param opts.lastId Specify list staring point using the &#x60;id&#x60; of last record in previous list-query results
+     * @param opts.reverse Whether to retrieve records whose IDs are smaller than &#x60;last_id&#x60;\&#39;s. Default to larger ones.  When &#x60;last_id&#x60; is specified. Set &#x60;reverse&#x60; to &#x60;true&#x60; to trace back trading history; &#x60;false&#x60; to retrieve latest tradings.  No effect if &#x60;last_id&#x60; is not specified.
      */
     public async listTrades(
         currencyPair: string,
-        opts: { limit?: number; lastId?: string },
+        opts: { limit?: number; lastId?: string; reverse?: boolean },
     ): Promise<{ response: AxiosResponse; body: Array<Trade> }> {
         const localVarPath = this.client.basePath + '/spot/trades';
         const localVarQueryParameters: any = {};
@@ -228,6 +297,10 @@ export class SpotApi {
 
         if (opts.lastId !== undefined) {
             localVarQueryParameters['last_id'] = ObjectSerializer.serialize(opts.lastId, 'string');
+        }
+
+        if (opts.reverse !== undefined) {
+            localVarQueryParameters['reverse'] = ObjectSerializer.serialize(opts.reverse, 'boolean');
         }
 
         const config: AxiosRequestConfig = {
@@ -380,7 +453,7 @@ export class SpotApi {
     }
 
     /**
-     * Batch orders requirements:  1. custom order field `text` is required 2. At most 4 currency pairs, maximum 5 orders each, are allowed in one request 3. No mixture of spot orders and margin orders, i.e. `account` must be identical for all orders
+     * Batch orders requirements:  1. custom order field `text` is required 2. At most 4 currency pairs, maximum 10 orders each, are allowed in one request 3. No mixture of spot orders and margin orders, i.e. `account` must be identical for all orders
      * @summary Create a batch of orders
      * @param order
      */

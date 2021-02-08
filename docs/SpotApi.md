@@ -4,6 +4,8 @@ All URIs are relative to *https://api.gateio.ws/api/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**listCurrencies**](SpotApi.md#listCurrencies) | **GET** /spot/currencies | List all currencies\&#39; detail
+[**getCurrency**](SpotApi.md#getCurrency) | **GET** /spot/currencies/{currency} | Get detail of one particular currency
 [**listCurrencyPairs**](SpotApi.md#listCurrencyPairs) | **GET** /spot/currency_pairs | List all currency pairs supported
 [**getCurrencyPair**](SpotApi.md#getCurrencyPair) | **GET** /spot/currency_pairs/{currency_pair} | Get detail of one single order
 [**listTickers**](SpotApi.md#listTickers) | **GET** /spot/tickers | Retrieve ticker information
@@ -22,6 +24,84 @@ Method | HTTP request | Description
 [**cancelOrder**](SpotApi.md#cancelOrder) | **DELETE** /spot/orders/{order_id} | Cancel a single order
 [**listMyTrades**](SpotApi.md#listMyTrades) | **GET** /spot/my_trades | List personal trading history
 
+
+## listCurrencies
+
+> Promise<{ response: http.IncomingMessage; body: Array<Currency>; }> listCurrencies()
+
+List all currencies\&#39; detail
+
+### Example
+
+```typescript
+const GateApi = require('gate-api');
+const client = new GateApi.ApiClient();
+// uncomment the next line to change base path
+// client.basePath = "https://some-other-host"
+
+const api = new GateApi.SpotApi(client);
+api.listCurrencies()
+   .then(value => console.log('API called successfully. Returned data: ', value.body),
+         error => console.error(error));
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+Promise<{ response: AxiosResponse; body: Array<Currency>; }> [Currency](Currency.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+## getCurrency
+
+> Promise<{ response: http.IncomingMessage; body: Currency; }> getCurrency(currency)
+
+Get detail of one particular currency
+
+### Example
+
+```typescript
+const GateApi = require('gate-api');
+const client = new GateApi.ApiClient();
+// uncomment the next line to change base path
+// client.basePath = "https://some-other-host"
+
+const api = new GateApi.SpotApi(client);
+const currency = "GT"; // string | Currency name
+api.getCurrency(currency)
+   .then(value => console.log('API called successfully. Returned data: ', value.body),
+         error => console.error(error));
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **currency** | **string**| Currency name | [default to undefined]
+
+### Return type
+
+Promise<{ response: AxiosResponse; body: Currency; }> [Currency](Currency.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 ## listCurrencyPairs
 
@@ -166,7 +246,8 @@ const api = new GateApi.SpotApi(client);
 const currencyPair = "BTC_USDT"; // string | Currency pair
 const opts = {
   'interval': '0', // string | Order depth. 0 means no aggregation is applied. default to 0
-  'limit': 10 // number | Maximum number of order depth data in asks or bids
+  'limit': 10, // number | Maximum number of order depth data in asks or bids
+  'withId': false // boolean | Return order book ID
 };
 api.listOrderBook(currencyPair, opts)
    .then(value => console.log('API called successfully. Returned data: ', value.body),
@@ -181,6 +262,7 @@ Name | Type | Description  | Notes
  **currencyPair** | **string**| Currency pair | [default to undefined]
  **interval** | **string**| Order depth. 0 means no aggregation is applied. default to 0 | [optional] [default to &#39;0&#39;]
  **limit** | **number**| Maximum number of order depth data in asks or bids | [optional] [default to 10]
+ **withId** | **boolean**| Return order book ID | [optional] [default to undefined]
 
 ### Return type
 
@@ -213,7 +295,8 @@ const api = new GateApi.SpotApi(client);
 const currencyPair = "BTC_USDT"; // string | Currency pair
 const opts = {
   'limit': 100, // number | Maximum number of records returned in one list
-  'lastId': "12345" // string | Specify list staring point using the `id` of last record in previous list-query results
+  'lastId': "12345", // string | Specify list staring point using the `id` of last record in previous list-query results
+  'reverse': true // boolean | Whether to retrieve records whose IDs are smaller than `last_id`\'s. Default to larger ones.  When `last_id` is specified. Set `reverse` to `true` to trace back trading history; `false` to retrieve latest tradings.  No effect if `last_id` is not specified.
 };
 api.listTrades(currencyPair, opts)
    .then(value => console.log('API called successfully. Returned data: ', value.body),
@@ -228,6 +311,7 @@ Name | Type | Description  | Notes
  **currencyPair** | **string**| Currency pair | [default to undefined]
  **limit** | **number**| Maximum number of records returned in one list | [optional] [default to 100]
  **lastId** | **string**| Specify list staring point using the &#x60;id&#x60; of last record in previous list-query results | [optional] [default to undefined]
+ **reverse** | **boolean**| Whether to retrieve records whose IDs are smaller than &#x60;last_id&#x60;\&#39;s. Default to larger ones.  When &#x60;last_id&#x60; is specified. Set &#x60;reverse&#x60; to &#x60;true&#x60; to trace back trading history; &#x60;false&#x60; to retrieve latest tradings.  No effect if &#x60;last_id&#x60; is not specified. | [optional] [default to undefined]
 
 ### Return type
 
@@ -391,7 +475,7 @@ Promise<{ response: AxiosResponse; body: Array<SpotAccount>; }> [SpotAccount](Sp
 
 Create a batch of orders
 
-Batch orders requirements:  1. custom order field &#x60;text&#x60; is required 2. At most 4 currency pairs, maximum 5 orders each, are allowed in one request 3. No mixture of spot orders and margin orders, i.e. &#x60;account&#x60; must be identical for all orders 
+Batch orders requirements:  1. custom order field &#x60;text&#x60; is required 2. At most 4 currency pairs, maximum 10 orders each, are allowed in one request 3. No mixture of spot orders and margin orders, i.e. &#x60;account&#x60; must be identical for all orders 
 
 ### Example
 

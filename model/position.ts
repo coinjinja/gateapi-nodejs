@@ -96,6 +96,10 @@ export class Position {
      */
     'pendingOrders'?: number;
     'closeOrder'?: PositionCloseOrder;
+    /**
+     * Position mode, including:  - `single`: dual mode is not enabled- `dual_long`: long position in dual mode- `dual_short`: short position in dual mode
+     */
+    'mode'?: Position.Mode;
 
     static discriminator: string | undefined = undefined;
 
@@ -205,9 +209,22 @@ export class Position {
             baseName: 'close_order',
             type: 'PositionCloseOrder',
         },
+        {
+            name: 'mode',
+            baseName: 'mode',
+            type: 'Position.Mode',
+        },
     ];
 
     static getAttributeTypeMap() {
         return Position.attributeTypeMap;
+    }
+}
+
+export namespace Position {
+    export enum Mode {
+        Single = <any>'single',
+        DualLong = <any>'dual_long',
+        DualShort = <any>'dual_short',
     }
 }

@@ -9,41 +9,32 @@
  * Do not edit the class manually.
  */
 
-export class OrderBook {
+export class SubAccountBalance {
     /**
-     * Order book ID, which is updated whenever the order book is changed. Valid only when `with_id` is set to `true`
+     * User ID
      */
-    'id'?: number;
+    'uid'?: string;
     /**
-     * Asks order depth
+     * Available balances of currencies
      */
-    'asks': Array<Array<string>>;
-    /**
-     * Bids order depth
-     */
-    'bids': Array<Array<string>>;
+    'available'?: { [key: string]: string };
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
-            name: 'id',
-            baseName: 'id',
-            type: 'number',
+            name: 'uid',
+            baseName: 'uid',
+            type: 'string',
         },
         {
-            name: 'asks',
-            baseName: 'asks',
-            type: 'Array<Array<string>>',
-        },
-        {
-            name: 'bids',
-            baseName: 'bids',
-            type: 'Array<Array<string>>',
+            name: 'available',
+            baseName: 'available',
+            type: '{ [key: string]: string; }',
         },
     ];
 
     static getAttributeTypeMap() {
-        return OrderBook.attributeTypeMap;
+        return SubAccountBalance.attributeTypeMap;
     }
 }

@@ -2,6 +2,8 @@ export * from './batchOrder';
 export * from './cancelOrder';
 export * from './cancelOrderResult';
 export * from './contract';
+export * from './contractStat';
+export * from './currency';
 export * from './currencyPair';
 export * from './deliveryContract';
 export * from './deliverySettlement';
@@ -40,6 +42,7 @@ export * from './positionCloseOrder';
 export * from './repayRequest';
 export * from './repayment';
 export * from './spotAccount';
+export * from './subAccountBalance';
 export * from './subAccountTransfer';
 export * from './ticker';
 export * from './trade';
@@ -57,6 +60,8 @@ import { BatchOrder } from './batchOrder';
 import { CancelOrder } from './cancelOrder';
 import { CancelOrderResult } from './cancelOrderResult';
 import { Contract } from './contract';
+import { ContractStat } from './contractStat';
+import { Currency } from './currency';
 import { CurrencyPair } from './currencyPair';
 import { DeliveryContract } from './deliveryContract';
 import { DeliverySettlement } from './deliverySettlement';
@@ -95,6 +100,7 @@ import { PositionCloseOrder } from './positionCloseOrder';
 import { RepayRequest } from './repayRequest';
 import { Repayment } from './repayment';
 import { SpotAccount } from './spotAccount';
+import { SubAccountBalance } from './subAccountBalance';
 import { SubAccountTransfer } from './subAccountTransfer';
 import { Ticker } from './ticker';
 import { Trade } from './trade';
@@ -139,6 +145,7 @@ const enumsMap: { [index: string]: any } = {
     'Order.Account': Order.Account,
     'Order.Side': Order.Side,
     'Order.TimeInForce': Order.TimeInForce,
+    'Position.Mode': Position.Mode,
     'PositionClose.Side': PositionClose.Side,
     'RepayRequest.Mode': RepayRequest.Mode,
     'SubAccountTransfer.Direction': SubAccountTransfer.Direction,
@@ -153,6 +160,8 @@ const typeMap: { [index: string]: any } = {
     CancelOrder: CancelOrder,
     CancelOrderResult: CancelOrderResult,
     Contract: Contract,
+    ContractStat: ContractStat,
+    Currency: Currency,
     CurrencyPair: CurrencyPair,
     DeliveryContract: DeliveryContract,
     DeliverySettlement: DeliverySettlement,
@@ -191,6 +200,7 @@ const typeMap: { [index: string]: any } = {
     RepayRequest: RepayRequest,
     Repayment: Repayment,
     SpotAccount: SpotAccount,
+    SubAccountBalance: SubAccountBalance,
     SubAccountTransfer: SubAccountTransfer,
     Ticker: Ticker,
     Trade: Trade,

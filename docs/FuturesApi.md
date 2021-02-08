@@ -12,6 +12,8 @@ Method | HTTP request | Description
 [**listFuturesTickers**](FuturesApi.md#listFuturesTickers) | **GET** /futures/{settle}/tickers | List futures tickers
 [**listFuturesFundingRateHistory**](FuturesApi.md#listFuturesFundingRateHistory) | **GET** /futures/{settle}/funding_rate | Funding rate history
 [**listFuturesInsuranceLedger**](FuturesApi.md#listFuturesInsuranceLedger) | **GET** /futures/{settle}/insurance | Futures insurance balance history
+[**listContractStats**](FuturesApi.md#listContractStats) | **GET** /futures/{settle}/contract_stats | Futures stats
+[**listLiquidatedOrders**](FuturesApi.md#listLiquidatedOrders) | **GET** /futures/{settle}/liq_orders | Retrieve liquidation history
 [**listFuturesAccounts**](FuturesApi.md#listFuturesAccounts) | **GET** /futures/{settle}/accounts | Query futures account
 [**listFuturesAccountBook**](FuturesApi.md#listFuturesAccountBook) | **GET** /futures/{settle}/account_book | Query account book
 [**listPositions**](FuturesApi.md#listPositions) | **GET** /futures/{settle}/positions | List all positions of a user
@@ -19,6 +21,11 @@ Method | HTTP request | Description
 [**updatePositionMargin**](FuturesApi.md#updatePositionMargin) | **POST** /futures/{settle}/positions/{contract}/margin | Update position margin
 [**updatePositionLeverage**](FuturesApi.md#updatePositionLeverage) | **POST** /futures/{settle}/positions/{contract}/leverage | Update position leverage
 [**updatePositionRiskLimit**](FuturesApi.md#updatePositionRiskLimit) | **POST** /futures/{settle}/positions/{contract}/risk_limit | Update position risk limit
+[**setDualMode**](FuturesApi.md#setDualMode) | **POST** /futures/{settle}/dual_mode | Enable or disable dual mode
+[**getDualModePosition**](FuturesApi.md#getDualModePosition) | **GET** /futures/{settle}/dual_comp/positions/{contract} | Retrieve position detail in dual mode
+[**updateDualModePositionMargin**](FuturesApi.md#updateDualModePositionMargin) | **POST** /futures/{settle}/dual_comp/positions/{contract}/margin | Update position margin in dual mode
+[**updateDualModePositionLeverage**](FuturesApi.md#updateDualModePositionLeverage) | **POST** /futures/{settle}/dual_comp/positions/{contract}/leverage | Update position leverage in dual mode
+[**updateDualModePositionRiskLimit**](FuturesApi.md#updateDualModePositionRiskLimit) | **POST** /futures/{settle}/dual_comp/positions/{contract}/risk_limit | Update position risk limit in dual mode
 [**listFuturesOrders**](FuturesApi.md#listFuturesOrders) | **GET** /futures/{settle}/orders | List futures orders
 [**createFuturesOrder**](FuturesApi.md#createFuturesOrder) | **POST** /futures/{settle}/orders | Create a futures order
 [**cancelFuturesOrders**](FuturesApi.md#cancelFuturesOrders) | **DELETE** /futures/{settle}/orders | Cancel all &#x60;open&#x60; orders matched
@@ -136,7 +143,7 @@ const client = new GateApi.ApiClient();
 
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
-const contract = "BTC_USD"; // string | Futures contract
+const contract = "BTC_USDT"; // string | Futures contract
 const opts = {
   'interval': '0', // '0' | '0.1' | '0.01' | Order depth. 0 means no aggregation is applied. default to 0
   'limit': 10 // number | Maximum number of order depth data in asks or bids
@@ -185,7 +192,7 @@ const client = new GateApi.ApiClient();
 
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
-const contract = "BTC_USD"; // string | Futures contract
+const contract = "BTC_USDT"; // string | Futures contract
 const opts = {
   'limit': 100, // number | Maximum number of records returned in one list
   'lastId': "12345", // string | Specify list staring point using the id of last record in previous list-query results  This parameter is deprecated. Use `from` and `to` instead to limit time range
@@ -240,7 +247,7 @@ const client = new GateApi.ApiClient();
 
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
-const contract = "BTC_USD"; // string | Futures contract
+const contract = "BTC_USDT"; // string | Futures contract
 const opts = {
   'from': 1546905600, // number | Start time of candlesticks, formatted in Unix timestamp in seconds. Default to`to - 100 * interval` if not specified
   'to': 1546935600, // number | End time of candlesticks, formatted in Unix timestamp in seconds. Default to current time
@@ -294,7 +301,7 @@ const client = new GateApi.ApiClient();
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
 const opts = {
-  'contract': "BTC_USD" // string | Futures contract, return related data only if specified
+  'contract': "BTC_USDT" // string | Futures contract, return related data only if specified
 };
 api.listFuturesTickers(settle, opts)
    .then(value => console.log('API called successfully. Returned data: ', value.body),
@@ -338,7 +345,7 @@ const client = new GateApi.ApiClient();
 
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
-const contract = "BTC_USD"; // string | Futures contract
+const contract = "BTC_USDT"; // string | Futures contract
 const opts = {
   'limit': 100 // number | Maximum number of records returned in one list
 };
@@ -404,6 +411,110 @@ Name | Type | Description  | Notes
 ### Return type
 
 Promise<{ response: AxiosResponse; body: Array<InsuranceRecord>; }> [InsuranceRecord](InsuranceRecord.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+## listContractStats
+
+> Promise<{ response: http.IncomingMessage; body: Array<ContractStat>; }> listContractStats(settle, contract, opts)
+
+Futures stats
+
+### Example
+
+```typescript
+const GateApi = require('gate-api');
+const client = new GateApi.ApiClient();
+// uncomment the next line to change base path
+// client.basePath = "https://some-other-host"
+
+const api = new GateApi.FuturesApi(client);
+const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
+const contract = "BTC_USDT"; // string | Futures contract
+const opts = {
+  'from': 1604561000, // number | Start timestamp
+  'interval': '5m', // '5m' | '15m' | '30m' | '1h' | '4h' | '1d' | 
+  'limit': 30 // number | 
+};
+api.listContractStats(settle, contract, opts)
+   .then(value => console.log('API called successfully. Returned data: ', value.body),
+         error => console.error(error));
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **settle** | **Settle**| Settle currency | [default to &#39;btc&#39;]
+ **contract** | **string**| Futures contract | [default to undefined]
+ **from** | **number**| Start timestamp | [optional] [default to undefined]
+ **interval** | **Interval**|  | [optional] [default to &#39;5m&#39;]
+ **limit** | **number**|  | [optional] [default to 30]
+
+### Return type
+
+Promise<{ response: AxiosResponse; body: Array<ContractStat>; }> [ContractStat](ContractStat.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+## listLiquidatedOrders
+
+> Promise<{ response: http.IncomingMessage; body: Array<FuturesLiquidate>; }> listLiquidatedOrders(settle, opts)
+
+Retrieve liquidation history
+
+Interval between &#x60;from&#x60; and &#x60;to&#x60; cannot exceeds 3600. Some private fields will not be returned in public endpoints. Refer to field description for detail.
+
+### Example
+
+```typescript
+const GateApi = require('gate-api');
+const client = new GateApi.ApiClient();
+// uncomment the next line to change base path
+// client.basePath = "https://some-other-host"
+
+const api = new GateApi.FuturesApi(client);
+const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
+const opts = {
+  'contract': "BTC_USDT", // string | Futures contract, return related data only if specified
+  'from': 1547706332, // number | Start timestamp
+  'to': 1547706332, // number | End timestamp
+  'limit': 100 // number | Maximum number of records returned in one list
+};
+api.listLiquidatedOrders(settle, opts)
+   .then(value => console.log('API called successfully. Returned data: ', value.body),
+         error => console.error(error));
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **settle** | **Settle**| Settle currency | [default to &#39;btc&#39;]
+ **contract** | **string**| Futures contract, return related data only if specified | [optional] [default to undefined]
+ **from** | **number**| Start timestamp | [optional] [default to undefined]
+ **to** | **number**| End timestamp | [optional] [default to undefined]
+ **limit** | **number**| Maximum number of records returned in one list | [optional] [default to 100]
+
+### Return type
+
+Promise<{ response: AxiosResponse; body: Array<FuturesLiquidate>; }> [FuturesLiquidate](FuturesLiquidate.md)
 
 ### Authorization
 
@@ -739,6 +850,239 @@ Promise<{ response: AxiosResponse; body: Position; }> [Position](Position.md)
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+## setDualMode
+
+> Promise<{ response: http.IncomingMessage; body: FuturesAccount; }> setDualMode(settle, dualMode)
+
+Enable or disable dual mode
+
+Before setting dual mode, make sure all positions are closed and no orders are open
+
+### Example
+
+```typescript
+const GateApi = require('gate-api');
+const client = new GateApi.ApiClient();
+// uncomment the next line to change base path
+// client.basePath = "https://some-other-host"
+// Configure Gate APIv4 key authentication:
+client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
+
+const api = new GateApi.FuturesApi(client);
+const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
+const dualMode = true; // boolean | Whether to enable dual mode
+api.setDualMode(settle, dualMode)
+   .then(value => console.log('API called successfully. Returned data: ', value.body),
+         error => console.error(error));
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **settle** | **Settle**| Settle currency | [default to &#39;btc&#39;]
+ **dualMode** | **boolean**| Whether to enable dual mode | [default to undefined]
+
+### Return type
+
+Promise<{ response: AxiosResponse; body: FuturesAccount; }> [FuturesAccount](FuturesAccount.md)
+
+### Authorization
+
+[apiv4](../README.md#apiv4)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+## getDualModePosition
+
+> Promise<{ response: http.IncomingMessage; body: Array<Position>; }> getDualModePosition(settle, contract)
+
+Retrieve position detail in dual mode
+
+### Example
+
+```typescript
+const GateApi = require('gate-api');
+const client = new GateApi.ApiClient();
+// uncomment the next line to change base path
+// client.basePath = "https://some-other-host"
+// Configure Gate APIv4 key authentication:
+client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
+
+const api = new GateApi.FuturesApi(client);
+const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
+const contract = "BTC_USD"; // string | Futures contract
+api.getDualModePosition(settle, contract)
+   .then(value => console.log('API called successfully. Returned data: ', value.body),
+         error => console.error(error));
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **settle** | **Settle**| Settle currency | [default to &#39;btc&#39;]
+ **contract** | **string**| Futures contract | [default to undefined]
+
+### Return type
+
+Promise<{ response: AxiosResponse; body: Array<Position>; }> [Position](Position.md)
+
+### Authorization
+
+[apiv4](../README.md#apiv4)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+## updateDualModePositionMargin
+
+> Promise<{ response: http.IncomingMessage; body: Array<Position>; }> updateDualModePositionMargin(settle, contract, change)
+
+Update position margin in dual mode
+
+### Example
+
+```typescript
+const GateApi = require('gate-api');
+const client = new GateApi.ApiClient();
+// uncomment the next line to change base path
+// client.basePath = "https://some-other-host"
+// Configure Gate APIv4 key authentication:
+client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
+
+const api = new GateApi.FuturesApi(client);
+const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
+const contract = "BTC_USD"; // string | Futures contract
+const change = "0.01"; // string | Margin change. Use positive number to increase margin, negative number otherwise.
+api.updateDualModePositionMargin(settle, contract, change)
+   .then(value => console.log('API called successfully. Returned data: ', value.body),
+         error => console.error(error));
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **settle** | **Settle**| Settle currency | [default to &#39;btc&#39;]
+ **contract** | **string**| Futures contract | [default to undefined]
+ **change** | **string**| Margin change. Use positive number to increase margin, negative number otherwise. | [default to undefined]
+
+### Return type
+
+Promise<{ response: AxiosResponse; body: Array<Position>; }> [Position](Position.md)
+
+### Authorization
+
+[apiv4](../README.md#apiv4)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+## updateDualModePositionLeverage
+
+> Promise<{ response: http.IncomingMessage; body: Array<Position>; }> updateDualModePositionLeverage(settle, contract, leverage)
+
+Update position leverage in dual mode
+
+### Example
+
+```typescript
+const GateApi = require('gate-api');
+const client = new GateApi.ApiClient();
+// uncomment the next line to change base path
+// client.basePath = "https://some-other-host"
+// Configure Gate APIv4 key authentication:
+client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
+
+const api = new GateApi.FuturesApi(client);
+const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
+const contract = "BTC_USD"; // string | Futures contract
+const leverage = "10"; // string | New position leverage
+api.updateDualModePositionLeverage(settle, contract, leverage)
+   .then(value => console.log('API called successfully. Returned data: ', value.body),
+         error => console.error(error));
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **settle** | **Settle**| Settle currency | [default to &#39;btc&#39;]
+ **contract** | **string**| Futures contract | [default to undefined]
+ **leverage** | **string**| New position leverage | [default to undefined]
+
+### Return type
+
+Promise<{ response: AxiosResponse; body: Array<Position>; }> [Position](Position.md)
+
+### Authorization
+
+[apiv4](../README.md#apiv4)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+## updateDualModePositionRiskLimit
+
+> Promise<{ response: http.IncomingMessage; body: Array<Position>; }> updateDualModePositionRiskLimit(settle, contract, riskLimit)
+
+Update position risk limit in dual mode
+
+### Example
+
+```typescript
+const GateApi = require('gate-api');
+const client = new GateApi.ApiClient();
+// uncomment the next line to change base path
+// client.basePath = "https://some-other-host"
+// Configure Gate APIv4 key authentication:
+client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
+
+const api = new GateApi.FuturesApi(client);
+const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
+const contract = "BTC_USD"; // string | Futures contract
+const riskLimit = "10"; // string | New position risk limit
+api.updateDualModePositionRiskLimit(settle, contract, riskLimit)
+   .then(value => console.log('API called successfully. Returned data: ', value.body),
+         error => console.error(error));
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **settle** | **Settle**| Settle currency | [default to &#39;btc&#39;]
+ **contract** | **string**| Futures contract | [default to undefined]
+ **riskLimit** | **string**| New position risk limit | [default to undefined]
+
+### Return type
+
+Promise<{ response: AxiosResponse; body: Array<Position>; }> [Position](Position.md)
+
+### Authorization
+
+[apiv4](../README.md#apiv4)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 ## listFuturesOrders
 
 > Promise<{ response: http.IncomingMessage; body: Array<FuturesOrder>; }> listFuturesOrders(settle, contract, status, opts)
@@ -759,7 +1103,7 @@ client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
 
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
-const contract = "BTC_USD"; // string | Futures contract
+const contract = "BTC_USDT"; // string | Futures contract
 const status = "open"; // 'open' | 'finished' | List orders based on status
 const opts = {
   'limit': 100, // number | Maximum number of records returned in one list
@@ -865,7 +1209,7 @@ client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
 
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
-const contract = "BTC_USD"; // string | Futures contract
+const contract = "BTC_USDT"; // string | Futures contract
 const opts = {
   'side': "ask" // 'ask' | 'bid' | All bids or asks. Both included in not specified
 };
@@ -1007,7 +1351,7 @@ client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
 const opts = {
-  'contract': "BTC_USD", // string | Futures contract, return related data only if specified
+  'contract': "BTC_USDT", // string | Futures contract, return related data only if specified
   'order': 12345, // number | Futures order ID, return related data only if specified
   'limit': 100, // number | Maximum number of records returned in one list
   'offset': 0, // number | List offset, starting from 0
@@ -1064,7 +1408,7 @@ client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
 const opts = {
-  'contract': "BTC_USD", // string | Futures contract, return related data only if specified
+  'contract': "BTC_USDT", // string | Futures contract, return related data only if specified
   'limit': 100 // number | Maximum number of records returned in one list
 };
 api.listPositionClose(settle, opts)
@@ -1113,7 +1457,7 @@ client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
 const opts = {
-  'contract': "BTC_USD", // string | Futures contract, return related data only if specified
+  'contract': "BTC_USDT", // string | Futures contract, return related data only if specified
   'limit': 100, // number | Maximum number of records returned in one list
   'at': 0 // number | Specify a liquidation timestamp
 };
@@ -1165,7 +1509,7 @@ const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
 const status = "status_example"; // 'open' | 'finished' | List orders based on status
 const opts = {
-  'contract': "BTC_USD", // string | Futures contract, return related data only if specified
+  'contract': "BTC_USDT", // string | Futures contract, return related data only if specified
   'limit': 100, // number | Maximum number of records returned in one list
   'offset': 0 // number | List offset, starting from 0
 };
@@ -1261,7 +1605,7 @@ client.setApiKeySecret("YOUR_API_KEY", "YOUR_API_SECRET");
 
 const api = new GateApi.FuturesApi(client);
 const settle = 'btc'; // 'btc' | 'usdt' | Settle currency
-const contract = "BTC_USD"; // string | Futures contract
+const contract = "BTC_USDT"; // string | Futures contract
 api.cancelPriceTriggeredOrderList(settle, contract)
    .then(value => console.log('API called successfully. Returned data: ', value.body),
          error => console.error(error));
