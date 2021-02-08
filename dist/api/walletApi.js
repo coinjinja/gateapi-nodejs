@@ -1,12 +1,15 @@
-import { ObjectSerializer } from '../model/models';
-import { ApiClient } from './apiClient';
-export class WalletApi {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WalletApi = void 0;
+const models_1 = require("../model/models");
+const apiClient_1 = require("./apiClient");
+class WalletApi {
     constructor(client) {
         if (client) {
             this.client = client;
         }
         else {
-            this.client = new ApiClient();
+            this.client = new apiClient_1.ApiClient();
         }
     }
     async getDepositAddress(currency) {
@@ -23,7 +26,7 @@ export class WalletApi {
         if (currency === null || currency === undefined) {
             throw new Error('Required parameter currency was null or undefined when calling getDepositAddress.');
         }
-        localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, 'string');
+        localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(currency, 'string');
         const config = {
             method: 'GET',
             params: localVarQueryParameters,
@@ -46,19 +49,19 @@ export class WalletApi {
         }
         opts = opts || {};
         if (opts.currency !== undefined) {
-            localVarQueryParameters['currency'] = ObjectSerializer.serialize(opts.currency, 'string');
+            localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(opts.currency, 'string');
         }
         if (opts.from !== undefined) {
-            localVarQueryParameters['from'] = ObjectSerializer.serialize(opts.from, 'number');
+            localVarQueryParameters['from'] = models_1.ObjectSerializer.serialize(opts.from, 'number');
         }
         if (opts.to !== undefined) {
-            localVarQueryParameters['to'] = ObjectSerializer.serialize(opts.to, 'number');
+            localVarQueryParameters['to'] = models_1.ObjectSerializer.serialize(opts.to, 'number');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.offset !== undefined) {
-            localVarQueryParameters['offset'] = ObjectSerializer.serialize(opts.offset, 'number');
+            localVarQueryParameters['offset'] = models_1.ObjectSerializer.serialize(opts.offset, 'number');
         }
         const config = {
             method: 'GET',
@@ -82,19 +85,19 @@ export class WalletApi {
         }
         opts = opts || {};
         if (opts.currency !== undefined) {
-            localVarQueryParameters['currency'] = ObjectSerializer.serialize(opts.currency, 'string');
+            localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(opts.currency, 'string');
         }
         if (opts.from !== undefined) {
-            localVarQueryParameters['from'] = ObjectSerializer.serialize(opts.from, 'number');
+            localVarQueryParameters['from'] = models_1.ObjectSerializer.serialize(opts.from, 'number');
         }
         if (opts.to !== undefined) {
-            localVarQueryParameters['to'] = ObjectSerializer.serialize(opts.to, 'number');
+            localVarQueryParameters['to'] = models_1.ObjectSerializer.serialize(opts.to, 'number');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.offset !== undefined) {
-            localVarQueryParameters['offset'] = ObjectSerializer.serialize(opts.offset, 'number');
+            localVarQueryParameters['offset'] = models_1.ObjectSerializer.serialize(opts.offset, 'number');
         }
         const config = {
             method: 'GET',
@@ -117,7 +120,7 @@ export class WalletApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(transfer, 'Transfer'),
+            data: models_1.ObjectSerializer.serialize(transfer, 'Transfer'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, '', authSettings);
@@ -135,19 +138,19 @@ export class WalletApi {
         }
         opts = opts || {};
         if (opts.subUid !== undefined) {
-            localVarQueryParameters['sub_uid'] = ObjectSerializer.serialize(opts.subUid, 'string');
+            localVarQueryParameters['sub_uid'] = models_1.ObjectSerializer.serialize(opts.subUid, 'string');
         }
         if (opts.from !== undefined) {
-            localVarQueryParameters['from'] = ObjectSerializer.serialize(opts.from, 'number');
+            localVarQueryParameters['from'] = models_1.ObjectSerializer.serialize(opts.from, 'number');
         }
         if (opts.to !== undefined) {
-            localVarQueryParameters['to'] = ObjectSerializer.serialize(opts.to, 'number');
+            localVarQueryParameters['to'] = models_1.ObjectSerializer.serialize(opts.to, 'number');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.offset !== undefined) {
-            localVarQueryParameters['offset'] = ObjectSerializer.serialize(opts.offset, 'number');
+            localVarQueryParameters['offset'] = models_1.ObjectSerializer.serialize(opts.offset, 'number');
         }
         const config = {
             method: 'GET',
@@ -170,7 +173,7 @@ export class WalletApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(subAccountTransfer, 'SubAccountTransfer'),
+            data: models_1.ObjectSerializer.serialize(subAccountTransfer, 'SubAccountTransfer'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, '', authSettings);
@@ -188,7 +191,7 @@ export class WalletApi {
         }
         opts = opts || {};
         if (opts.currency !== undefined) {
-            localVarQueryParameters['currency'] = ObjectSerializer.serialize(opts.currency, 'string');
+            localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(opts.currency, 'string');
         }
         const config = {
             method: 'GET',
@@ -212,7 +215,7 @@ export class WalletApi {
         }
         opts = opts || {};
         if (opts.subUid !== undefined) {
-            localVarQueryParameters['sub_uid'] = ObjectSerializer.serialize(opts.subUid, 'string');
+            localVarQueryParameters['sub_uid'] = models_1.ObjectSerializer.serialize(opts.subUid, 'string');
         }
         const config = {
             method: 'GET',
@@ -224,3 +227,4 @@ export class WalletApi {
         return this.client.request(config, 'Array<SubAccountBalance>', authSettings);
     }
 }
+exports.WalletApi = WalletApi;

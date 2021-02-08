@@ -1,8 +1,12 @@
-export class FundingBookItem {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FundingBookItem = void 0;
+class FundingBookItem {
     static getAttributeTypeMap() {
         return FundingBookItem.attributeTypeMap;
     }
 }
+exports.FundingBookItem = FundingBookItem;
 FundingBookItem.discriminator = undefined;
 FundingBookItem.attributeTypeMap = [
     {

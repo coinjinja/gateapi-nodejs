@@ -1,12 +1,15 @@
-import { ObjectSerializer } from '../model/models';
-import { ApiClient } from './apiClient';
-export class DeliveryApi {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DeliveryApi = void 0;
+const models_1 = require("../model/models");
+const apiClient_1 = require("./apiClient");
+class DeliveryApi {
     constructor(client) {
         if (client) {
             this.client = client;
         }
         else {
-            this.client = new ApiClient();
+            this.client = new apiClient_1.ApiClient();
         }
     }
     async listDeliveryContracts(settle) {
@@ -81,12 +84,12 @@ export class DeliveryApi {
             throw new Error('Required parameter contract was null or undefined when calling listDeliveryOrderBook.');
         }
         opts = opts || {};
-        localVarQueryParameters['contract'] = ObjectSerializer.serialize(contract, 'string');
+        localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(contract, 'string');
         if (opts.interval !== undefined) {
-            localVarQueryParameters['interval'] = ObjectSerializer.serialize(opts.interval, "'0' | '0.1' | '0.01'");
+            localVarQueryParameters['interval'] = models_1.ObjectSerializer.serialize(opts.interval, "'0' | '0.1' | '0.01'");
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         const config = {
             method: 'GET',
@@ -116,18 +119,18 @@ export class DeliveryApi {
             throw new Error('Required parameter contract was null or undefined when calling listDeliveryTrades.');
         }
         opts = opts || {};
-        localVarQueryParameters['contract'] = ObjectSerializer.serialize(contract, 'string');
+        localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(contract, 'string');
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.lastId !== undefined) {
-            localVarQueryParameters['last_id'] = ObjectSerializer.serialize(opts.lastId, 'string');
+            localVarQueryParameters['last_id'] = models_1.ObjectSerializer.serialize(opts.lastId, 'string');
         }
         if (opts.from !== undefined) {
-            localVarQueryParameters['from'] = ObjectSerializer.serialize(opts.from, 'number');
+            localVarQueryParameters['from'] = models_1.ObjectSerializer.serialize(opts.from, 'number');
         }
         if (opts.to !== undefined) {
-            localVarQueryParameters['to'] = ObjectSerializer.serialize(opts.to, 'number');
+            localVarQueryParameters['to'] = models_1.ObjectSerializer.serialize(opts.to, 'number');
         }
         const config = {
             method: 'GET',
@@ -157,18 +160,18 @@ export class DeliveryApi {
             throw new Error('Required parameter contract was null or undefined when calling listDeliveryCandlesticks.');
         }
         opts = opts || {};
-        localVarQueryParameters['contract'] = ObjectSerializer.serialize(contract, 'string');
+        localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(contract, 'string');
         if (opts.from !== undefined) {
-            localVarQueryParameters['from'] = ObjectSerializer.serialize(opts.from, 'number');
+            localVarQueryParameters['from'] = models_1.ObjectSerializer.serialize(opts.from, 'number');
         }
         if (opts.to !== undefined) {
-            localVarQueryParameters['to'] = ObjectSerializer.serialize(opts.to, 'number');
+            localVarQueryParameters['to'] = models_1.ObjectSerializer.serialize(opts.to, 'number');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.interval !== undefined) {
-            localVarQueryParameters['interval'] = ObjectSerializer.serialize(opts.interval, "'10s' | '1m' | '5m' | '15m' | '30m' | '1h' | '4h' | '8h' | '1d' | '7d'");
+            localVarQueryParameters['interval'] = models_1.ObjectSerializer.serialize(opts.interval, "'10s' | '1m' | '5m' | '15m' | '30m' | '1h' | '4h' | '8h' | '1d' | '7d'");
         }
         const config = {
             method: 'GET',
@@ -196,7 +199,7 @@ export class DeliveryApi {
         }
         opts = opts || {};
         if (opts.contract !== undefined) {
-            localVarQueryParameters['contract'] = ObjectSerializer.serialize(opts.contract, 'string');
+            localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(opts.contract, 'string');
         }
         const config = {
             method: 'GET',
@@ -224,7 +227,7 @@ export class DeliveryApi {
         }
         opts = opts || {};
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         const config = {
             method: 'GET',
@@ -276,16 +279,16 @@ export class DeliveryApi {
         }
         opts = opts || {};
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.from !== undefined) {
-            localVarQueryParameters['from'] = ObjectSerializer.serialize(opts.from, 'number');
+            localVarQueryParameters['from'] = models_1.ObjectSerializer.serialize(opts.from, 'number');
         }
         if (opts.to !== undefined) {
-            localVarQueryParameters['to'] = ObjectSerializer.serialize(opts.to, 'number');
+            localVarQueryParameters['to'] = models_1.ObjectSerializer.serialize(opts.to, 'number');
         }
         if (opts.type !== undefined) {
-            localVarQueryParameters['type'] = ObjectSerializer.serialize(opts.type, "'dnw' | 'pnl' | 'fee' | 'refr' | 'fund' | 'point_dnw' | 'point_fee' | 'point_refr'");
+            localVarQueryParameters['type'] = models_1.ObjectSerializer.serialize(opts.type, "'dnw' | 'pnl' | 'fee' | 'refr' | 'fund' | 'point_dnw' | 'point_fee' | 'point_refr'");
         }
         const config = {
             method: 'GET',
@@ -372,7 +375,7 @@ export class DeliveryApi {
         if (change === null || change === undefined) {
             throw new Error('Required parameter change was null or undefined when calling updateDeliveryPositionMargin.');
         }
-        localVarQueryParameters['change'] = ObjectSerializer.serialize(change, 'string');
+        localVarQueryParameters['change'] = models_1.ObjectSerializer.serialize(change, 'string');
         const config = {
             method: 'POST',
             params: localVarQueryParameters,
@@ -405,7 +408,7 @@ export class DeliveryApi {
         if (leverage === null || leverage === undefined) {
             throw new Error('Required parameter leverage was null or undefined when calling updateDeliveryPositionLeverage.');
         }
-        localVarQueryParameters['leverage'] = ObjectSerializer.serialize(leverage, 'string');
+        localVarQueryParameters['leverage'] = models_1.ObjectSerializer.serialize(leverage, 'string');
         const config = {
             method: 'POST',
             params: localVarQueryParameters,
@@ -438,7 +441,7 @@ export class DeliveryApi {
         if (riskLimit === null || riskLimit === undefined) {
             throw new Error('Required parameter riskLimit was null or undefined when calling updateDeliveryPositionRiskLimit.');
         }
-        localVarQueryParameters['risk_limit'] = ObjectSerializer.serialize(riskLimit, 'string');
+        localVarQueryParameters['risk_limit'] = models_1.ObjectSerializer.serialize(riskLimit, 'string');
         const config = {
             method: 'POST',
             params: localVarQueryParameters,
@@ -468,20 +471,20 @@ export class DeliveryApi {
         }
         opts = opts || {};
         if (opts.contract !== undefined) {
-            localVarQueryParameters['contract'] = ObjectSerializer.serialize(opts.contract, 'string');
+            localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(opts.contract, 'string');
         }
-        localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'open' | 'finished'");
+        localVarQueryParameters['status'] = models_1.ObjectSerializer.serialize(status, "'open' | 'finished'");
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.offset !== undefined) {
-            localVarQueryParameters['offset'] = ObjectSerializer.serialize(opts.offset, 'number');
+            localVarQueryParameters['offset'] = models_1.ObjectSerializer.serialize(opts.offset, 'number');
         }
         if (opts.lastId !== undefined) {
-            localVarQueryParameters['last_id'] = ObjectSerializer.serialize(opts.lastId, 'string');
+            localVarQueryParameters['last_id'] = models_1.ObjectSerializer.serialize(opts.lastId, 'string');
         }
         if (opts.countTotal !== undefined) {
-            localVarQueryParameters['count_total'] = ObjectSerializer.serialize(opts.countTotal, '0 | 1');
+            localVarQueryParameters['count_total'] = models_1.ObjectSerializer.serialize(opts.countTotal, '0 | 1');
         }
         const config = {
             method: 'GET',
@@ -515,7 +518,7 @@ export class DeliveryApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(futuresOrder, 'FuturesOrder'),
+            data: models_1.ObjectSerializer.serialize(futuresOrder, 'FuturesOrder'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'FuturesOrder', authSettings);
@@ -539,9 +542,9 @@ export class DeliveryApi {
             throw new Error('Required parameter contract was null or undefined when calling cancelDeliveryOrders.');
         }
         opts = opts || {};
-        localVarQueryParameters['contract'] = ObjectSerializer.serialize(contract, 'string');
+        localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(contract, 'string');
         if (opts.side !== undefined) {
-            localVarQueryParameters['side'] = ObjectSerializer.serialize(opts.side, "'ask' | 'bid'");
+            localVarQueryParameters['side'] = models_1.ObjectSerializer.serialize(opts.side, "'ask' | 'bid'");
         }
         const config = {
             method: 'DELETE',
@@ -627,22 +630,22 @@ export class DeliveryApi {
         }
         opts = opts || {};
         if (opts.contract !== undefined) {
-            localVarQueryParameters['contract'] = ObjectSerializer.serialize(opts.contract, 'string');
+            localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(opts.contract, 'string');
         }
         if (opts.order !== undefined) {
-            localVarQueryParameters['order'] = ObjectSerializer.serialize(opts.order, 'number');
+            localVarQueryParameters['order'] = models_1.ObjectSerializer.serialize(opts.order, 'number');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.offset !== undefined) {
-            localVarQueryParameters['offset'] = ObjectSerializer.serialize(opts.offset, 'number');
+            localVarQueryParameters['offset'] = models_1.ObjectSerializer.serialize(opts.offset, 'number');
         }
         if (opts.lastId !== undefined) {
-            localVarQueryParameters['last_id'] = ObjectSerializer.serialize(opts.lastId, 'string');
+            localVarQueryParameters['last_id'] = models_1.ObjectSerializer.serialize(opts.lastId, 'string');
         }
         if (opts.countTotal !== undefined) {
-            localVarQueryParameters['count_total'] = ObjectSerializer.serialize(opts.countTotal, '0 | 1');
+            localVarQueryParameters['count_total'] = models_1.ObjectSerializer.serialize(opts.countTotal, '0 | 1');
         }
         const config = {
             method: 'GET',
@@ -670,10 +673,10 @@ export class DeliveryApi {
         }
         opts = opts || {};
         if (opts.contract !== undefined) {
-            localVarQueryParameters['contract'] = ObjectSerializer.serialize(opts.contract, 'string');
+            localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(opts.contract, 'string');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         const config = {
             method: 'GET',
@@ -701,13 +704,13 @@ export class DeliveryApi {
         }
         opts = opts || {};
         if (opts.contract !== undefined) {
-            localVarQueryParameters['contract'] = ObjectSerializer.serialize(opts.contract, 'string');
+            localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(opts.contract, 'string');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.at !== undefined) {
-            localVarQueryParameters['at'] = ObjectSerializer.serialize(opts.at, 'number');
+            localVarQueryParameters['at'] = models_1.ObjectSerializer.serialize(opts.at, 'number');
         }
         const config = {
             method: 'GET',
@@ -735,13 +738,13 @@ export class DeliveryApi {
         }
         opts = opts || {};
         if (opts.contract !== undefined) {
-            localVarQueryParameters['contract'] = ObjectSerializer.serialize(opts.contract, 'string');
+            localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(opts.contract, 'string');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.at !== undefined) {
-            localVarQueryParameters['at'] = ObjectSerializer.serialize(opts.at, 'number');
+            localVarQueryParameters['at'] = models_1.ObjectSerializer.serialize(opts.at, 'number');
         }
         const config = {
             method: 'GET',
@@ -771,15 +774,15 @@ export class DeliveryApi {
             throw new Error('Required parameter status was null or undefined when calling listPriceTriggeredDeliveryOrders.');
         }
         opts = opts || {};
-        localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'open' | 'finished'");
+        localVarQueryParameters['status'] = models_1.ObjectSerializer.serialize(status, "'open' | 'finished'");
         if (opts.contract !== undefined) {
-            localVarQueryParameters['contract'] = ObjectSerializer.serialize(opts.contract, 'string');
+            localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(opts.contract, 'string');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.offset !== undefined) {
-            localVarQueryParameters['offset'] = ObjectSerializer.serialize(opts.offset, 'number');
+            localVarQueryParameters['offset'] = models_1.ObjectSerializer.serialize(opts.offset, 'number');
         }
         const config = {
             method: 'GET',
@@ -813,7 +816,7 @@ export class DeliveryApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(futuresPriceTriggeredOrder, 'FuturesPriceTriggeredOrder'),
+            data: models_1.ObjectSerializer.serialize(futuresPriceTriggeredOrder, 'FuturesPriceTriggeredOrder'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'TriggerOrderResponse', authSettings);
@@ -836,7 +839,7 @@ export class DeliveryApi {
         if (contract === null || contract === undefined) {
             throw new Error('Required parameter contract was null or undefined when calling cancelPriceTriggeredDeliveryOrderList.');
         }
-        localVarQueryParameters['contract'] = ObjectSerializer.serialize(contract, 'string');
+        localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(contract, 'string');
         const config = {
             method: 'DELETE',
             params: localVarQueryParameters,
@@ -905,3 +908,4 @@ export class DeliveryApi {
         return this.client.request(config, 'FuturesPriceTriggeredOrder', authSettings);
     }
 }
+exports.DeliveryApi = DeliveryApi;

@@ -1,8 +1,12 @@
-export class MyFuturesTrade {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MyFuturesTrade = void 0;
+class MyFuturesTrade {
     static getAttributeTypeMap() {
         return MyFuturesTrade.attributeTypeMap;
     }
 }
+exports.MyFuturesTrade = MyFuturesTrade;
 MyFuturesTrade.discriminator = undefined;
 MyFuturesTrade.attributeTypeMap = [
     {
@@ -47,4 +51,4 @@ MyFuturesTrade.attributeTypeMap = [
         Role[Role["Taker"] = 'taker'] = "Taker";
         Role[Role["Maker"] = 'maker'] = "Maker";
     })(Role = MyFuturesTrade.Role || (MyFuturesTrade.Role = {}));
-})(MyFuturesTrade || (MyFuturesTrade = {}));
+})(MyFuturesTrade = exports.MyFuturesTrade || (exports.MyFuturesTrade = {}));

@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
-        "module": "esnext",
+        "module": "commonjs",
         "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
-        "target": "esnext",
+        "target": "es2017",
         "strict": true,
         "moduleResolution": "node",
         "removeComments": true,

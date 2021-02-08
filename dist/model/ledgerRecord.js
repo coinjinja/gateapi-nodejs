@@ -1,8 +1,12 @@
-export class LedgerRecord {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LedgerRecord = void 0;
+class LedgerRecord {
     static getAttributeTypeMap() {
         return LedgerRecord.attributeTypeMap;
     }
 }
+exports.LedgerRecord = LedgerRecord;
 LedgerRecord.discriminator = undefined;
 LedgerRecord.attributeTypeMap = [
     {
@@ -55,4 +59,4 @@ LedgerRecord.attributeTypeMap = [
         Status[Status["MANUAL"] = 'MANUAL'] = "MANUAL";
         Status[Status["BCODE"] = 'BCODE'] = "BCODE";
     })(Status = LedgerRecord.Status || (LedgerRecord.Status = {}));
-})(LedgerRecord || (LedgerRecord = {}));
+})(LedgerRecord = exports.LedgerRecord || (exports.LedgerRecord = {}));

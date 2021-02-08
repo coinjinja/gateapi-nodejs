@@ -1,8 +1,12 @@
-export class FuturesInitialOrder {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FuturesInitialOrder = void 0;
+class FuturesInitialOrder {
     static getAttributeTypeMap() {
         return FuturesInitialOrder.attributeTypeMap;
     }
 }
+exports.FuturesInitialOrder = FuturesInitialOrder;
 FuturesInitialOrder.discriminator = undefined;
 FuturesInitialOrder.attributeTypeMap = [
     {
@@ -57,4 +61,4 @@ FuturesInitialOrder.attributeTypeMap = [
         Tif[Tif["Gtc"] = 'gtc'] = "Gtc";
         Tif[Tif["Ioc"] = 'ioc'] = "Ioc";
     })(Tif = FuturesInitialOrder.Tif || (FuturesInitialOrder.Tif = {}));
-})(FuturesInitialOrder || (FuturesInitialOrder = {}));
+})(FuturesInitialOrder = exports.FuturesInitialOrder || (exports.FuturesInitialOrder = {}));

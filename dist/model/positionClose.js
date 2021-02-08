@@ -1,8 +1,12 @@
-export class PositionClose {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PositionClose = void 0;
+class PositionClose {
     static getAttributeTypeMap() {
         return PositionClose.attributeTypeMap;
     }
 }
+exports.PositionClose = PositionClose;
 PositionClose.discriminator = undefined;
 PositionClose.attributeTypeMap = [
     {
@@ -37,4 +41,4 @@ PositionClose.attributeTypeMap = [
         Side[Side["Long"] = 'long'] = "Long";
         Side[Side["Short"] = 'short'] = "Short";
     })(Side = PositionClose.Side || (PositionClose.Side = {}));
-})(PositionClose || (PositionClose = {}));
+})(PositionClose = exports.PositionClose || (exports.PositionClose = {}));

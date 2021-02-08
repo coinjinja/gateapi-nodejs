@@ -1,12 +1,15 @@
-import { ObjectSerializer } from '../model/models';
-import { ApiClient } from './apiClient';
-export class WithdrawalApi {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WithdrawalApi = void 0;
+const models_1 = require("../model/models");
+const apiClient_1 = require("./apiClient");
+class WithdrawalApi {
     constructor(client) {
         if (client) {
             this.client = client;
         }
         else {
-            this.client = new ApiClient();
+            this.client = new apiClient_1.ApiClient();
         }
     }
     async withdraw(ledgerRecord) {
@@ -28,9 +31,10 @@ export class WithdrawalApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(ledgerRecord, 'LedgerRecord'),
+            data: models_1.ObjectSerializer.serialize(ledgerRecord, 'LedgerRecord'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'LedgerRecord', authSettings);
     }
 }
+exports.WithdrawalApi = WithdrawalApi;

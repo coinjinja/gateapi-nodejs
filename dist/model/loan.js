@@ -1,8 +1,12 @@
-export class Loan {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Loan = void 0;
+class Loan {
     static getAttributeTypeMap() {
         return Loan.attributeTypeMap;
     }
 }
+exports.Loan = Loan;
 Loan.discriminator = undefined;
 Loan.attributeTypeMap = [
     {
@@ -104,4 +108,4 @@ Loan.attributeTypeMap = [
         Side[Side["Lend"] = 'lend'] = "Lend";
         Side[Side["Borrow"] = 'borrow'] = "Borrow";
     })(Side = Loan.Side || (Loan.Side = {}));
-})(Loan || (Loan = {}));
+})(Loan = exports.Loan || (exports.Loan = {}));

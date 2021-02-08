@@ -1,8 +1,12 @@
-export class RepayRequest {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RepayRequest = void 0;
+class RepayRequest {
     static getAttributeTypeMap() {
         return RepayRequest.attributeTypeMap;
     }
 }
+exports.RepayRequest = RepayRequest;
 RepayRequest.discriminator = undefined;
 RepayRequest.attributeTypeMap = [
     {
@@ -32,4 +36,4 @@ RepayRequest.attributeTypeMap = [
         Mode[Mode["All"] = 'all'] = "All";
         Mode[Mode["Partial"] = 'partial'] = "Partial";
     })(Mode = RepayRequest.Mode || (RepayRequest.Mode = {}));
-})(RepayRequest || (RepayRequest = {}));
+})(RepayRequest = exports.RepayRequest || (exports.RepayRequest = {}));

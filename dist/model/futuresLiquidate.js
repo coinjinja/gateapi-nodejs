@@ -1,8 +1,12 @@
-export class FuturesLiquidate {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FuturesLiquidate = void 0;
+class FuturesLiquidate {
     static getAttributeTypeMap() {
         return FuturesLiquidate.attributeTypeMap;
     }
 }
+exports.FuturesLiquidate = FuturesLiquidate;
 FuturesLiquidate.discriminator = undefined;
 FuturesLiquidate.attributeTypeMap = [
     {

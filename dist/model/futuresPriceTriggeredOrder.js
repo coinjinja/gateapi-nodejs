@@ -1,8 +1,12 @@
-export class FuturesPriceTriggeredOrder {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FuturesPriceTriggeredOrder = void 0;
+class FuturesPriceTriggeredOrder {
     static getAttributeTypeMap() {
         return FuturesPriceTriggeredOrder.attributeTypeMap;
     }
 }
+exports.FuturesPriceTriggeredOrder = FuturesPriceTriggeredOrder;
 FuturesPriceTriggeredOrder.discriminator = undefined;
 FuturesPriceTriggeredOrder.attributeTypeMap = [
     {
@@ -69,4 +73,4 @@ FuturesPriceTriggeredOrder.attributeTypeMap = [
         FinishAs[FinishAs["Failed"] = 'failed'] = "Failed";
         FinishAs[FinishAs["Expired"] = 'expired'] = "Expired";
     })(FinishAs = FuturesPriceTriggeredOrder.FinishAs || (FuturesPriceTriggeredOrder.FinishAs = {}));
-})(FuturesPriceTriggeredOrder || (FuturesPriceTriggeredOrder = {}));
+})(FuturesPriceTriggeredOrder = exports.FuturesPriceTriggeredOrder || (exports.FuturesPriceTriggeredOrder = {}));

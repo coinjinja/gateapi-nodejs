@@ -1,8 +1,12 @@
-export class CancelOrder {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CancelOrder = void 0;
+class CancelOrder {
     static getAttributeTypeMap() {
         return CancelOrder.attributeTypeMap;
     }
 }
+exports.CancelOrder = CancelOrder;
 CancelOrder.discriminator = undefined;
 CancelOrder.attributeTypeMap = [
     {

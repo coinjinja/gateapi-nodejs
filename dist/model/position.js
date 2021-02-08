@@ -1,8 +1,12 @@
-export class Position {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Position = void 0;
+class Position {
     static getAttributeTypeMap() {
         return Position.attributeTypeMap;
     }
 }
+exports.Position = Position;
 Position.discriminator = undefined;
 Position.attributeTypeMap = [
     {
@@ -123,4 +127,4 @@ Position.attributeTypeMap = [
         Mode[Mode["DualLong"] = 'dual_long'] = "DualLong";
         Mode[Mode["DualShort"] = 'dual_short'] = "DualShort";
     })(Mode = Position.Mode || (Position.Mode = {}));
-})(Position || (Position = {}));
+})(Position = exports.Position || (exports.Position = {}));

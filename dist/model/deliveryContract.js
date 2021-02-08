@@ -1,8 +1,12 @@
-export class DeliveryContract {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DeliveryContract = void 0;
+class DeliveryContract {
     static getAttributeTypeMap() {
         return DeliveryContract.attributeTypeMap;
     }
 }
+exports.DeliveryContract = DeliveryContract;
 DeliveryContract.discriminator = undefined;
 DeliveryContract.attributeTypeMap = [
     {
@@ -214,4 +218,4 @@ DeliveryContract.attributeTypeMap = [
         MarkType[MarkType["Internal"] = 'internal'] = "Internal";
         MarkType[MarkType["Index"] = 'index'] = "Index";
     })(MarkType = DeliveryContract.MarkType || (DeliveryContract.MarkType = {}));
-})(DeliveryContract || (DeliveryContract = {}));
+})(DeliveryContract = exports.DeliveryContract || (exports.DeliveryContract = {}));

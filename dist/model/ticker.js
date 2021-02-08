@@ -1,8 +1,12 @@
-export class Ticker {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Ticker = void 0;
+class Ticker {
     static getAttributeTypeMap() {
         return Ticker.attributeTypeMap;
     }
 }
+exports.Ticker = Ticker;
 Ticker.discriminator = undefined;
 Ticker.attributeTypeMap = [
     {

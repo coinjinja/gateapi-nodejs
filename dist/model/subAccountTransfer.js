@@ -1,8 +1,12 @@
-export class SubAccountTransfer {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SubAccountTransfer = void 0;
+class SubAccountTransfer {
     static getAttributeTypeMap() {
         return SubAccountTransfer.attributeTypeMap;
     }
 }
+exports.SubAccountTransfer = SubAccountTransfer;
 SubAccountTransfer.discriminator = undefined;
 SubAccountTransfer.attributeTypeMap = [
     {
@@ -47,4 +51,4 @@ SubAccountTransfer.attributeTypeMap = [
         Direction[Direction["To"] = 'to'] = "To";
         Direction[Direction["From"] = 'from'] = "From";
     })(Direction = SubAccountTransfer.Direction || (SubAccountTransfer.Direction = {}));
-})(SubAccountTransfer || (SubAccountTransfer = {}));
+})(SubAccountTransfer = exports.SubAccountTransfer || (exports.SubAccountTransfer = {}));

@@ -1,8 +1,12 @@
-export class MarginAccount {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MarginAccount = void 0;
+class MarginAccount {
     static getAttributeTypeMap() {
         return MarginAccount.attributeTypeMap;
     }
 }
+exports.MarginAccount = MarginAccount;
 MarginAccount.discriminator = undefined;
 MarginAccount.attributeTypeMap = [
     {

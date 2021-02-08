@@ -1,8 +1,12 @@
-export class CurrencyPair {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CurrencyPair = void 0;
+class CurrencyPair {
     static getAttributeTypeMap() {
         return CurrencyPair.attributeTypeMap;
     }
 }
+exports.CurrencyPair = CurrencyPair;
 CurrencyPair.discriminator = undefined;
 CurrencyPair.attributeTypeMap = [
     {
@@ -59,4 +63,4 @@ CurrencyPair.attributeTypeMap = [
         TradeStatus[TradeStatus["Sellable"] = 'sellable'] = "Sellable";
         TradeStatus[TradeStatus["Tradable"] = 'tradable'] = "Tradable";
     })(TradeStatus = CurrencyPair.TradeStatus || (CurrencyPair.TradeStatus = {}));
-})(CurrencyPair || (CurrencyPair = {}));
+})(CurrencyPair = exports.CurrencyPair || (exports.CurrencyPair = {}));

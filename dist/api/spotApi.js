@@ -1,12 +1,15 @@
-import { ObjectSerializer } from '../model/models';
-import { ApiClient } from './apiClient';
-export class SpotApi {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SpotApi = void 0;
+const models_1 = require("../model/models");
+const apiClient_1 = require("./apiClient");
+class SpotApi {
     constructor(client) {
         if (client) {
             this.client = client;
         }
         else {
-            this.client = new ApiClient();
+            this.client = new apiClient_1.ApiClient();
         }
     }
     async listCurrencies() {
@@ -110,7 +113,7 @@ export class SpotApi {
         }
         opts = opts || {};
         if (opts.currencyPair !== undefined) {
-            localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(opts.currencyPair, 'string');
+            localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(opts.currencyPair, 'string');
         }
         const config = {
             method: 'GET',
@@ -136,15 +139,15 @@ export class SpotApi {
             throw new Error('Required parameter currencyPair was null or undefined when calling listOrderBook.');
         }
         opts = opts || {};
-        localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(currencyPair, 'string');
+        localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(currencyPair, 'string');
         if (opts.interval !== undefined) {
-            localVarQueryParameters['interval'] = ObjectSerializer.serialize(opts.interval, 'string');
+            localVarQueryParameters['interval'] = models_1.ObjectSerializer.serialize(opts.interval, 'string');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.withId !== undefined) {
-            localVarQueryParameters['with_id'] = ObjectSerializer.serialize(opts.withId, 'boolean');
+            localVarQueryParameters['with_id'] = models_1.ObjectSerializer.serialize(opts.withId, 'boolean');
         }
         const config = {
             method: 'GET',
@@ -170,15 +173,15 @@ export class SpotApi {
             throw new Error('Required parameter currencyPair was null or undefined when calling listTrades.');
         }
         opts = opts || {};
-        localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(currencyPair, 'string');
+        localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(currencyPair, 'string');
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.lastId !== undefined) {
-            localVarQueryParameters['last_id'] = ObjectSerializer.serialize(opts.lastId, 'string');
+            localVarQueryParameters['last_id'] = models_1.ObjectSerializer.serialize(opts.lastId, 'string');
         }
         if (opts.reverse !== undefined) {
-            localVarQueryParameters['reverse'] = ObjectSerializer.serialize(opts.reverse, 'boolean');
+            localVarQueryParameters['reverse'] = models_1.ObjectSerializer.serialize(opts.reverse, 'boolean');
         }
         const config = {
             method: 'GET',
@@ -204,18 +207,18 @@ export class SpotApi {
             throw new Error('Required parameter currencyPair was null or undefined when calling listCandlesticks.');
         }
         opts = opts || {};
-        localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(currencyPair, 'string');
+        localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(currencyPair, 'string');
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.from !== undefined) {
-            localVarQueryParameters['from'] = ObjectSerializer.serialize(opts.from, 'number');
+            localVarQueryParameters['from'] = models_1.ObjectSerializer.serialize(opts.from, 'number');
         }
         if (opts.to !== undefined) {
-            localVarQueryParameters['to'] = ObjectSerializer.serialize(opts.to, 'number');
+            localVarQueryParameters['to'] = models_1.ObjectSerializer.serialize(opts.to, 'number');
         }
         if (opts.interval !== undefined) {
-            localVarQueryParameters['interval'] = ObjectSerializer.serialize(opts.interval, "'10s' | '1m' | '5m' | '15m' | '30m' | '1h' | '4h' | '8h' | '1d' | '7d'");
+            localVarQueryParameters['interval'] = models_1.ObjectSerializer.serialize(opts.interval, "'10s' | '1m' | '5m' | '15m' | '30m' | '1h' | '4h' | '8h' | '1d' | '7d'");
         }
         const config = {
             method: 'GET',
@@ -239,7 +242,7 @@ export class SpotApi {
         }
         opts = opts || {};
         if (opts.currencyPair !== undefined) {
-            localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(opts.currencyPair, 'string');
+            localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(opts.currencyPair, 'string');
         }
         const config = {
             method: 'GET',
@@ -263,7 +266,7 @@ export class SpotApi {
         }
         opts = opts || {};
         if (opts.currency !== undefined) {
-            localVarQueryParameters['currency'] = ObjectSerializer.serialize(opts.currency, 'string');
+            localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(opts.currency, 'string');
         }
         const config = {
             method: 'GET',
@@ -293,7 +296,7 @@ export class SpotApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(order, 'Array<Order>'),
+            data: models_1.ObjectSerializer.serialize(order, 'Array<Order>'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'Array<BatchOrder>', authSettings);
@@ -311,10 +314,10 @@ export class SpotApi {
         }
         opts = opts || {};
         if (opts.page !== undefined) {
-            localVarQueryParameters['page'] = ObjectSerializer.serialize(opts.page, 'number');
+            localVarQueryParameters['page'] = models_1.ObjectSerializer.serialize(opts.page, 'number');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         const config = {
             method: 'GET',
@@ -343,13 +346,13 @@ export class SpotApi {
             throw new Error('Required parameter status was null or undefined when calling listOrders.');
         }
         opts = opts || {};
-        localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(currencyPair, 'string');
-        localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'open' | 'finished'");
+        localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(currencyPair, 'string');
+        localVarQueryParameters['status'] = models_1.ObjectSerializer.serialize(status, "'open' | 'finished'");
         if (opts.page !== undefined) {
-            localVarQueryParameters['page'] = ObjectSerializer.serialize(opts.page, 'number');
+            localVarQueryParameters['page'] = models_1.ObjectSerializer.serialize(opts.page, 'number');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         const config = {
             method: 'GET',
@@ -379,7 +382,7 @@ export class SpotApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(order, 'Order'),
+            data: models_1.ObjectSerializer.serialize(order, 'Order'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'Order', authSettings);
@@ -399,12 +402,12 @@ export class SpotApi {
             throw new Error('Required parameter currencyPair was null or undefined when calling cancelOrders.');
         }
         opts = opts || {};
-        localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(currencyPair, 'string');
+        localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(currencyPair, 'string');
         if (opts.side !== undefined) {
-            localVarQueryParameters['side'] = ObjectSerializer.serialize(opts.side, "'buy' | 'sell'");
+            localVarQueryParameters['side'] = models_1.ObjectSerializer.serialize(opts.side, "'buy' | 'sell'");
         }
         if (opts.account !== undefined) {
-            localVarQueryParameters['account'] = ObjectSerializer.serialize(opts.account, "'spot' | 'margin'");
+            localVarQueryParameters['account'] = models_1.ObjectSerializer.serialize(opts.account, "'spot' | 'margin'");
         }
         const config = {
             method: 'DELETE',
@@ -434,7 +437,7 @@ export class SpotApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(cancelOrder, 'Array<CancelOrder>'),
+            data: models_1.ObjectSerializer.serialize(cancelOrder, 'Array<CancelOrder>'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'Array<CancelOrderResult>', authSettings);
@@ -457,7 +460,7 @@ export class SpotApi {
         if (currencyPair === null || currencyPair === undefined) {
             throw new Error('Required parameter currencyPair was null or undefined when calling getOrder.');
         }
-        localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(currencyPair, 'string');
+        localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(currencyPair, 'string');
         const config = {
             method: 'GET',
             params: localVarQueryParameters,
@@ -485,7 +488,7 @@ export class SpotApi {
         if (currencyPair === null || currencyPair === undefined) {
             throw new Error('Required parameter currencyPair was null or undefined when calling cancelOrder.');
         }
-        localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(currencyPair, 'string');
+        localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(currencyPair, 'string');
         const config = {
             method: 'DELETE',
             params: localVarQueryParameters,
@@ -510,15 +513,15 @@ export class SpotApi {
             throw new Error('Required parameter currencyPair was null or undefined when calling listMyTrades.');
         }
         opts = opts || {};
-        localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(currencyPair, 'string');
+        localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(currencyPair, 'string');
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         if (opts.page !== undefined) {
-            localVarQueryParameters['page'] = ObjectSerializer.serialize(opts.page, 'number');
+            localVarQueryParameters['page'] = models_1.ObjectSerializer.serialize(opts.page, 'number');
         }
         if (opts.orderId !== undefined) {
-            localVarQueryParameters['order_id'] = ObjectSerializer.serialize(opts.orderId, 'string');
+            localVarQueryParameters['order_id'] = models_1.ObjectSerializer.serialize(opts.orderId, 'string');
         }
         const config = {
             method: 'GET',
@@ -530,3 +533,4 @@ export class SpotApi {
         return this.client.request(config, 'Array<Trade>', authSettings);
     }
 }
+exports.SpotApi = SpotApi;

@@ -1,8 +1,12 @@
-export class SpotAccount {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SpotAccount = void 0;
+class SpotAccount {
     static getAttributeTypeMap() {
         return SpotAccount.attributeTypeMap;
     }
 }
+exports.SpotAccount = SpotAccount;
 SpotAccount.discriminator = undefined;
 SpotAccount.attributeTypeMap = [
     {

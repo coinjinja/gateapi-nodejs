@@ -1,12 +1,15 @@
-import { GateApiV4Auth, ObjectSerializer } from '../model/models';
-import globalAxios from 'axios';
-export class ApiClient {
-    constructor(basePath, axiosInstance = globalAxios) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ApiClient = void 0;
+const models_1 = require("../model/models");
+const axios_1 = require("axios");
+class ApiClient {
+    constructor(basePath, axiosInstance = axios_1.default) {
         this.axiosInstance = axiosInstance;
         this._basePath = 'https://api.gateio.ws/api/v4';
         this._defaultHeaders = {};
         this.authentications = {
-            apiv4: new GateApiV4Auth(),
+            apiv4: new models_1.GateApiV4Auth(),
         };
         this._basePath = basePath || this._basePath;
     }
@@ -43,10 +46,11 @@ export class ApiClient {
             return this.axiosInstance.request(c).then((rsp) => {
                 let body = rsp.data;
                 if (responseType.length > 0) {
-                    body = ObjectSerializer.deserialize(rsp.data, responseType);
+                    body = models_1.ObjectSerializer.deserialize(rsp.data, responseType);
                 }
                 return { response: rsp, body: body };
             });
         });
     }
 }
+exports.ApiClient = ApiClient;

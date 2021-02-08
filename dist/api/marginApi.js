@@ -1,12 +1,15 @@
-import { ObjectSerializer } from '../model/models';
-import { ApiClient } from './apiClient';
-export class MarginApi {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MarginApi = void 0;
+const models_1 = require("../model/models");
+const apiClient_1 = require("./apiClient");
+class MarginApi {
     constructor(client) {
         if (client) {
             this.client = client;
         }
         else {
-            this.client = new ApiClient();
+            this.client = new apiClient_1.ApiClient();
         }
     }
     async listMarginCurrencyPairs() {
@@ -67,7 +70,7 @@ export class MarginApi {
         if (currency === null || currency === undefined) {
             throw new Error('Required parameter currency was null or undefined when calling listFundingBook.');
         }
-        localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, 'string');
+        localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(currency, 'string');
         const config = {
             method: 'GET',
             params: localVarQueryParameters,
@@ -90,7 +93,7 @@ export class MarginApi {
         }
         opts = opts || {};
         if (opts.currencyPair !== undefined) {
-            localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(opts.currencyPair, 'string');
+            localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(opts.currencyPair, 'string');
         }
         const config = {
             method: 'GET',
@@ -114,22 +117,22 @@ export class MarginApi {
         }
         opts = opts || {};
         if (opts.currency !== undefined) {
-            localVarQueryParameters['currency'] = ObjectSerializer.serialize(opts.currency, 'string');
+            localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(opts.currency, 'string');
         }
         if (opts.currencyPair !== undefined) {
-            localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(opts.currencyPair, 'string');
+            localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(opts.currencyPair, 'string');
         }
         if (opts.from !== undefined) {
-            localVarQueryParameters['from'] = ObjectSerializer.serialize(opts.from, 'number');
+            localVarQueryParameters['from'] = models_1.ObjectSerializer.serialize(opts.from, 'number');
         }
         if (opts.to !== undefined) {
-            localVarQueryParameters['to'] = ObjectSerializer.serialize(opts.to, 'number');
+            localVarQueryParameters['to'] = models_1.ObjectSerializer.serialize(opts.to, 'number');
         }
         if (opts.page !== undefined) {
-            localVarQueryParameters['page'] = ObjectSerializer.serialize(opts.page, 'number');
+            localVarQueryParameters['page'] = models_1.ObjectSerializer.serialize(opts.page, 'number');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         const config = {
             method: 'GET',
@@ -153,7 +156,7 @@ export class MarginApi {
         }
         opts = opts || {};
         if (opts.currency !== undefined) {
-            localVarQueryParameters['currency'] = ObjectSerializer.serialize(opts.currency, 'string');
+            localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(opts.currency, 'string');
         }
         const config = {
             method: 'GET',
@@ -182,25 +185,25 @@ export class MarginApi {
             throw new Error('Required parameter side was null or undefined when calling listLoans.');
         }
         opts = opts || {};
-        localVarQueryParameters['status'] = ObjectSerializer.serialize(status, "'open' | 'loaned' | 'finished' | 'auto_repaid'");
-        localVarQueryParameters['side'] = ObjectSerializer.serialize(side, "'lend' | 'borrow'");
+        localVarQueryParameters['status'] = models_1.ObjectSerializer.serialize(status, "'open' | 'loaned' | 'finished' | 'auto_repaid'");
+        localVarQueryParameters['side'] = models_1.ObjectSerializer.serialize(side, "'lend' | 'borrow'");
         if (opts.currency !== undefined) {
-            localVarQueryParameters['currency'] = ObjectSerializer.serialize(opts.currency, 'string');
+            localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(opts.currency, 'string');
         }
         if (opts.currencyPair !== undefined) {
-            localVarQueryParameters['currency_pair'] = ObjectSerializer.serialize(opts.currencyPair, 'string');
+            localVarQueryParameters['currency_pair'] = models_1.ObjectSerializer.serialize(opts.currencyPair, 'string');
         }
         if (opts.sortBy !== undefined) {
-            localVarQueryParameters['sort_by'] = ObjectSerializer.serialize(opts.sortBy, "'create_time' | 'rate'");
+            localVarQueryParameters['sort_by'] = models_1.ObjectSerializer.serialize(opts.sortBy, "'create_time' | 'rate'");
         }
         if (opts.reverseSort !== undefined) {
-            localVarQueryParameters['reverse_sort'] = ObjectSerializer.serialize(opts.reverseSort, 'boolean');
+            localVarQueryParameters['reverse_sort'] = models_1.ObjectSerializer.serialize(opts.reverseSort, 'boolean');
         }
         if (opts.page !== undefined) {
-            localVarQueryParameters['page'] = ObjectSerializer.serialize(opts.page, 'number');
+            localVarQueryParameters['page'] = models_1.ObjectSerializer.serialize(opts.page, 'number');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         const config = {
             method: 'GET',
@@ -230,7 +233,7 @@ export class MarginApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(loan, 'Loan'),
+            data: models_1.ObjectSerializer.serialize(loan, 'Loan'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'Loan', authSettings);
@@ -252,8 +255,8 @@ export class MarginApi {
         if (ids === null || ids === undefined) {
             throw new Error('Required parameter ids was null or undefined when calling mergeLoans.');
         }
-        localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, 'string');
-        localVarQueryParameters['ids'] = ObjectSerializer.serialize(ids, 'string');
+        localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(currency, 'string');
+        localVarQueryParameters['ids'] = models_1.ObjectSerializer.serialize(ids, 'string');
         const config = {
             method: 'POST',
             params: localVarQueryParameters,
@@ -281,7 +284,7 @@ export class MarginApi {
         if (side === null || side === undefined) {
             throw new Error('Required parameter side was null or undefined when calling getLoan.');
         }
-        localVarQueryParameters['side'] = ObjectSerializer.serialize(side, "'lend' | 'borrow'");
+        localVarQueryParameters['side'] = models_1.ObjectSerializer.serialize(side, "'lend' | 'borrow'");
         const config = {
             method: 'GET',
             params: localVarQueryParameters,
@@ -309,7 +312,7 @@ export class MarginApi {
         if (currency === null || currency === undefined) {
             throw new Error('Required parameter currency was null or undefined when calling cancelLoan.');
         }
-        localVarQueryParameters['currency'] = ObjectSerializer.serialize(currency, 'string');
+        localVarQueryParameters['currency'] = models_1.ObjectSerializer.serialize(currency, 'string');
         const config = {
             method: 'DELETE',
             params: localVarQueryParameters,
@@ -342,7 +345,7 @@ export class MarginApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(loanPatch, 'LoanPatch'),
+            data: models_1.ObjectSerializer.serialize(loanPatch, 'LoanPatch'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'Loan', authSettings);
@@ -394,7 +397,7 @@ export class MarginApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(repayRequest, 'RepayRequest'),
+            data: models_1.ObjectSerializer.serialize(repayRequest, 'RepayRequest'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'Loan', authSettings);
@@ -414,15 +417,15 @@ export class MarginApi {
             throw new Error('Required parameter loanId was null or undefined when calling listLoanRecords.');
         }
         opts = opts || {};
-        localVarQueryParameters['loan_id'] = ObjectSerializer.serialize(loanId, 'string');
+        localVarQueryParameters['loan_id'] = models_1.ObjectSerializer.serialize(loanId, 'string');
         if (opts.status !== undefined) {
-            localVarQueryParameters['status'] = ObjectSerializer.serialize(opts.status, "'loaned' | 'finished'");
+            localVarQueryParameters['status'] = models_1.ObjectSerializer.serialize(opts.status, "'loaned' | 'finished'");
         }
         if (opts.page !== undefined) {
-            localVarQueryParameters['page'] = ObjectSerializer.serialize(opts.page, 'number');
+            localVarQueryParameters['page'] = models_1.ObjectSerializer.serialize(opts.page, 'number');
         }
         if (opts.limit !== undefined) {
-            localVarQueryParameters['limit'] = ObjectSerializer.serialize(opts.limit, 'number');
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
         const config = {
             method: 'GET',
@@ -451,7 +454,7 @@ export class MarginApi {
         if (loanId === null || loanId === undefined) {
             throw new Error('Required parameter loanId was null or undefined when calling getLoanRecord.');
         }
-        localVarQueryParameters['loan_id'] = ObjectSerializer.serialize(loanId, 'string');
+        localVarQueryParameters['loan_id'] = models_1.ObjectSerializer.serialize(loanId, 'string');
         const config = {
             method: 'GET',
             params: localVarQueryParameters,
@@ -484,9 +487,10 @@ export class MarginApi {
             params: localVarQueryParameters,
             headers: localVarHeaderParams,
             url: localVarPath,
-            data: ObjectSerializer.serialize(loanPatch, 'LoanPatch'),
+            data: models_1.ObjectSerializer.serialize(loanPatch, 'LoanPatch'),
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'LoanRecord', authSettings);
     }
 }
+exports.MarginApi = MarginApi;

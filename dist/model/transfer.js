@@ -1,8 +1,12 @@
-export class Transfer {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Transfer = void 0;
+class Transfer {
     static getAttributeTypeMap() {
         return Transfer.attributeTypeMap;
     }
 }
+exports.Transfer = Transfer;
 Transfer.discriminator = undefined;
 Transfer.attributeTypeMap = [
     {
@@ -51,4 +55,4 @@ Transfer.attributeTypeMap = [
         To[To["Futures"] = 'futures'] = "Futures";
         To[To["Delivery"] = 'delivery'] = "Delivery";
     })(To = Transfer.To || (Transfer.To = {}));
-})(Transfer || (Transfer = {}));
+})(Transfer = exports.Transfer || (exports.Transfer = {}));

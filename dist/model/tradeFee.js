@@ -1,8 +1,12 @@
-export class TradeFee {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TradeFee = void 0;
+class TradeFee {
     static getAttributeTypeMap() {
         return TradeFee.attributeTypeMap;
     }
 }
+exports.TradeFee = TradeFee;
 TradeFee.discriminator = undefined;
 TradeFee.attributeTypeMap = [
     {

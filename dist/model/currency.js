@@ -1,8 +1,12 @@
-export class Currency {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Currency = void 0;
+class Currency {
     static getAttributeTypeMap() {
         return Currency.attributeTypeMap;
     }
 }
+exports.Currency = Currency;
 Currency.discriminator = undefined;
 Currency.attributeTypeMap = [
     {

@@ -1,8 +1,12 @@
-export class LoanRecord {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LoanRecord = void 0;
+class LoanRecord {
     static getAttributeTypeMap() {
         return LoanRecord.attributeTypeMap;
     }
 }
+exports.LoanRecord = LoanRecord;
 LoanRecord.discriminator = undefined;
 LoanRecord.attributeTypeMap = [
     {
@@ -82,4 +86,4 @@ LoanRecord.attributeTypeMap = [
         Status[Status["Loaned"] = 'loaned'] = "Loaned";
         Status[Status["Finished"] = 'finished'] = "Finished";
     })(Status = LoanRecord.Status || (LoanRecord.Status = {}));
-})(LoanRecord || (LoanRecord = {}));
+})(LoanRecord = exports.LoanRecord || (exports.LoanRecord = {}));
