@@ -54,7 +54,7 @@ export * from './withdrawStatus';
 import { AxiosRequestConfig } from 'axios';
 import * as querystring from 'querystring';
 import * as crypto from 'crypto';
-import { URL } from 'react-native-url-polyfill';
+import { URL } from 'whatwg-url-without-unicode';
 
 import { BatchOrder } from './batchOrder';
 import { CancelOrder } from './cancelOrder';
