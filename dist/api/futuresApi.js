@@ -270,6 +270,81 @@ class FuturesApi {
         const authSettings = [];
         return this.client.request(config, 'Array<InsuranceRecord>', authSettings);
     }
+    async listContractStats(settle, contract, opts) {
+        const localVarPath = this.client.basePath +
+            '/futures/{settle}/contract_stats'.replace('{' + 'settle' + '}', encodeURIComponent(String(settle)));
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        if (settle === null || settle === undefined) {
+            throw new Error('Required parameter settle was null or undefined when calling listContractStats.');
+        }
+        if (contract === null || contract === undefined) {
+            throw new Error('Required parameter contract was null or undefined when calling listContractStats.');
+        }
+        opts = opts || {};
+        localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(contract, 'string');
+        if (opts.from !== undefined) {
+            localVarQueryParameters['from'] = models_1.ObjectSerializer.serialize(opts.from, 'number');
+        }
+        if (opts.interval !== undefined) {
+            localVarQueryParameters['interval'] = models_1.ObjectSerializer.serialize(opts.interval, "'5m' | '15m' | '30m' | '1h' | '4h' | '1d'");
+        }
+        if (opts.limit !== undefined) {
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
+        }
+        const config = {
+            method: 'GET',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = [];
+        return this.client.request(config, 'Array<ContractStat>', authSettings);
+    }
+    async listLiquidatedOrders(settle, opts) {
+        const localVarPath = this.client.basePath +
+            '/futures/{settle}/liq_orders'.replace('{' + 'settle' + '}', encodeURIComponent(String(settle)));
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        if (settle === null || settle === undefined) {
+            throw new Error('Required parameter settle was null or undefined when calling listLiquidatedOrders.');
+        }
+        opts = opts || {};
+        if (opts.contract !== undefined) {
+            localVarQueryParameters['contract'] = models_1.ObjectSerializer.serialize(opts.contract, 'string');
+        }
+        if (opts.from !== undefined) {
+            localVarQueryParameters['from'] = models_1.ObjectSerializer.serialize(opts.from, 'number');
+        }
+        if (opts.to !== undefined) {
+            localVarQueryParameters['to'] = models_1.ObjectSerializer.serialize(opts.to, 'number');
+        }
+        if (opts.limit !== undefined) {
+            localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
+        }
+        const config = {
+            method: 'GET',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = [];
+        return this.client.request(config, 'Array<FuturesLiquidate>', authSettings);
+    }
     async listFuturesAccounts(settle) {
         const localVarPath = this.client.basePath +
             '/futures/{settle}/accounts'.replace('{' + 'settle' + '}', encodeURIComponent(String(settle)));
@@ -482,6 +557,162 @@ class FuturesApi {
         };
         const authSettings = ['apiv4'];
         return this.client.request(config, 'Position', authSettings);
+    }
+    async setDualMode(settle, dualMode) {
+        const localVarPath = this.client.basePath +
+            '/futures/{settle}/dual_mode'.replace('{' + 'settle' + '}', encodeURIComponent(String(settle)));
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        if (settle === null || settle === undefined) {
+            throw new Error('Required parameter settle was null or undefined when calling setDualMode.');
+        }
+        if (dualMode === null || dualMode === undefined) {
+            throw new Error('Required parameter dualMode was null or undefined when calling setDualMode.');
+        }
+        localVarQueryParameters['dual_mode'] = models_1.ObjectSerializer.serialize(dualMode, 'boolean');
+        const config = {
+            method: 'POST',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = ['apiv4'];
+        return this.client.request(config, 'FuturesAccount', authSettings);
+    }
+    async getDualModePosition(settle, contract) {
+        const localVarPath = this.client.basePath +
+            '/futures/{settle}/dual_comp/positions/{contract}'
+                .replace('{' + 'settle' + '}', encodeURIComponent(String(settle)))
+                .replace('{' + 'contract' + '}', encodeURIComponent(String(contract)));
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        if (settle === null || settle === undefined) {
+            throw new Error('Required parameter settle was null or undefined when calling getDualModePosition.');
+        }
+        if (contract === null || contract === undefined) {
+            throw new Error('Required parameter contract was null or undefined when calling getDualModePosition.');
+        }
+        const config = {
+            method: 'GET',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = ['apiv4'];
+        return this.client.request(config, 'Array<Position>', authSettings);
+    }
+    async updateDualModePositionMargin(settle, contract, change) {
+        const localVarPath = this.client.basePath +
+            '/futures/{settle}/dual_comp/positions/{contract}/margin'
+                .replace('{' + 'settle' + '}', encodeURIComponent(String(settle)))
+                .replace('{' + 'contract' + '}', encodeURIComponent(String(contract)));
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        if (settle === null || settle === undefined) {
+            throw new Error('Required parameter settle was null or undefined when calling updateDualModePositionMargin.');
+        }
+        if (contract === null || contract === undefined) {
+            throw new Error('Required parameter contract was null or undefined when calling updateDualModePositionMargin.');
+        }
+        if (change === null || change === undefined) {
+            throw new Error('Required parameter change was null or undefined when calling updateDualModePositionMargin.');
+        }
+        localVarQueryParameters['change'] = models_1.ObjectSerializer.serialize(change, 'string');
+        const config = {
+            method: 'POST',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = ['apiv4'];
+        return this.client.request(config, 'Array<Position>', authSettings);
+    }
+    async updateDualModePositionLeverage(settle, contract, leverage) {
+        const localVarPath = this.client.basePath +
+            '/futures/{settle}/dual_comp/positions/{contract}/leverage'
+                .replace('{' + 'settle' + '}', encodeURIComponent(String(settle)))
+                .replace('{' + 'contract' + '}', encodeURIComponent(String(contract)));
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        if (settle === null || settle === undefined) {
+            throw new Error('Required parameter settle was null or undefined when calling updateDualModePositionLeverage.');
+        }
+        if (contract === null || contract === undefined) {
+            throw new Error('Required parameter contract was null or undefined when calling updateDualModePositionLeverage.');
+        }
+        if (leverage === null || leverage === undefined) {
+            throw new Error('Required parameter leverage was null or undefined when calling updateDualModePositionLeverage.');
+        }
+        localVarQueryParameters['leverage'] = models_1.ObjectSerializer.serialize(leverage, 'string');
+        const config = {
+            method: 'POST',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = ['apiv4'];
+        return this.client.request(config, 'Array<Position>', authSettings);
+    }
+    async updateDualModePositionRiskLimit(settle, contract, riskLimit) {
+        const localVarPath = this.client.basePath +
+            '/futures/{settle}/dual_comp/positions/{contract}/risk_limit'
+                .replace('{' + 'settle' + '}', encodeURIComponent(String(settle)))
+                .replace('{' + 'contract' + '}', encodeURIComponent(String(contract)));
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        if (settle === null || settle === undefined) {
+            throw new Error('Required parameter settle was null or undefined when calling updateDualModePositionRiskLimit.');
+        }
+        if (contract === null || contract === undefined) {
+            throw new Error('Required parameter contract was null or undefined when calling updateDualModePositionRiskLimit.');
+        }
+        if (riskLimit === null || riskLimit === undefined) {
+            throw new Error('Required parameter riskLimit was null or undefined when calling updateDualModePositionRiskLimit.');
+        }
+        localVarQueryParameters['risk_limit'] = models_1.ObjectSerializer.serialize(riskLimit, 'string');
+        const config = {
+            method: 'POST',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = ['apiv4'];
+        return this.client.request(config, 'Array<Position>', authSettings);
     }
     async listFuturesOrders(settle, contract, status, opts) {
         const localVarPath = this.client.basePath +

@@ -11,6 +11,7 @@ export declare class Order {
     'amount': string;
     'price': string;
     'timeInForce'?: Order.TimeInForce;
+    'iceberg'?: string;
     'autoBorrow'?: boolean;
     'left'?: string;
     'fillPrice'?: string;

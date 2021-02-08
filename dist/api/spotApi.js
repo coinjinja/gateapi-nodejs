@@ -12,6 +12,50 @@ class SpotApi {
             this.client = new apiClient_1.ApiClient();
         }
     }
+    async listCurrencies() {
+        const localVarPath = this.client.basePath + '/spot/currencies';
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        const config = {
+            method: 'GET',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = [];
+        return this.client.request(config, 'Array<Currency>', authSettings);
+    }
+    async getCurrency(currency) {
+        const localVarPath = this.client.basePath +
+            '/spot/currencies/{currency}'.replace('{' + 'currency' + '}', encodeURIComponent(String(currency)));
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        if (currency === null || currency === undefined) {
+            throw new Error('Required parameter currency was null or undefined when calling getCurrency.');
+        }
+        const config = {
+            method: 'GET',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = [];
+        return this.client.request(config, 'Currency', authSettings);
+    }
     async listCurrencyPairs() {
         const localVarPath = this.client.basePath + '/spot/currency_pairs';
         const localVarQueryParameters = {};
@@ -102,6 +146,9 @@ class SpotApi {
         if (opts.limit !== undefined) {
             localVarQueryParameters['limit'] = models_1.ObjectSerializer.serialize(opts.limit, 'number');
         }
+        if (opts.withId !== undefined) {
+            localVarQueryParameters['with_id'] = models_1.ObjectSerializer.serialize(opts.withId, 'boolean');
+        }
         const config = {
             method: 'GET',
             params: localVarQueryParameters,
@@ -132,6 +179,9 @@ class SpotApi {
         }
         if (opts.lastId !== undefined) {
             localVarQueryParameters['last_id'] = models_1.ObjectSerializer.serialize(opts.lastId, 'string');
+        }
+        if (opts.reverse !== undefined) {
+            localVarQueryParameters['reverse'] = models_1.ObjectSerializer.serialize(opts.reverse, 'boolean');
         }
         const config = {
             method: 'GET',

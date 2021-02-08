@@ -114,4 +114,17 @@ Position.attributeTypeMap = [
         baseName: 'close_order',
         type: 'PositionCloseOrder',
     },
+    {
+        name: 'mode',
+        baseName: 'mode',
+        type: 'Position.Mode',
+    },
 ];
+(function (Position) {
+    let Mode;
+    (function (Mode) {
+        Mode[Mode["Single"] = 'single'] = "Single";
+        Mode[Mode["DualLong"] = 'dual_long'] = "DualLong";
+        Mode[Mode["DualShort"] = 'dual_short'] = "DualShort";
+    })(Mode = Position.Mode || (Position.Mode = {}));
+})(Position = exports.Position || (exports.Position = {}));

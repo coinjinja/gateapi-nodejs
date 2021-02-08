@@ -1,7 +1,10 @@
-export declare class OrderBook {
-    'id'?: number;
-    'asks': Array<Array<string>>;
-    'bids': Array<Array<string>>;
+export declare class Currency {
+    'currency'?: string;
+    'delisted'?: boolean;
+    'withdrawDisabled'?: boolean;
+    'withdrawDelayed'?: boolean;
+    'depositDisabled'?: boolean;
+    'tradeDisabled'?: boolean;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;

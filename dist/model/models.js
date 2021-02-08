@@ -15,6 +15,8 @@ __exportStar(require("./batchOrder"), exports);
 __exportStar(require("./cancelOrder"), exports);
 __exportStar(require("./cancelOrderResult"), exports);
 __exportStar(require("./contract"), exports);
+__exportStar(require("./contractStat"), exports);
+__exportStar(require("./currency"), exports);
 __exportStar(require("./currencyPair"), exports);
 __exportStar(require("./deliveryContract"), exports);
 __exportStar(require("./deliverySettlement"), exports);
@@ -53,6 +55,7 @@ __exportStar(require("./positionCloseOrder"), exports);
 __exportStar(require("./repayRequest"), exports);
 __exportStar(require("./repayment"), exports);
 __exportStar(require("./spotAccount"), exports);
+__exportStar(require("./subAccountBalance"), exports);
 __exportStar(require("./subAccountTransfer"), exports);
 __exportStar(require("./ticker"), exports);
 __exportStar(require("./trade"), exports);
@@ -67,6 +70,8 @@ const batchOrder_1 = require("./batchOrder");
 const cancelOrder_1 = require("./cancelOrder");
 const cancelOrderResult_1 = require("./cancelOrderResult");
 const contract_1 = require("./contract");
+const contractStat_1 = require("./contractStat");
+const currency_1 = require("./currency");
 const currencyPair_1 = require("./currencyPair");
 const deliveryContract_1 = require("./deliveryContract");
 const deliverySettlement_1 = require("./deliverySettlement");
@@ -105,6 +110,7 @@ const positionCloseOrder_1 = require("./positionCloseOrder");
 const repayRequest_1 = require("./repayRequest");
 const repayment_1 = require("./repayment");
 const spotAccount_1 = require("./spotAccount");
+const subAccountBalance_1 = require("./subAccountBalance");
 const subAccountTransfer_1 = require("./subAccountTransfer");
 const ticker_1 = require("./ticker");
 const trade_1 = require("./trade");
@@ -146,6 +152,7 @@ const enumsMap = {
     'Order.Account': order_1.Order.Account,
     'Order.Side': order_1.Order.Side,
     'Order.TimeInForce': order_1.Order.TimeInForce,
+    'Position.Mode': position_1.Position.Mode,
     'PositionClose.Side': positionClose_1.PositionClose.Side,
     'RepayRequest.Mode': repayRequest_1.RepayRequest.Mode,
     'SubAccountTransfer.Direction': subAccountTransfer_1.SubAccountTransfer.Direction,
@@ -159,6 +166,8 @@ const typeMap = {
     CancelOrder: cancelOrder_1.CancelOrder,
     CancelOrderResult: cancelOrderResult_1.CancelOrderResult,
     Contract: contract_1.Contract,
+    ContractStat: contractStat_1.ContractStat,
+    Currency: currency_1.Currency,
     CurrencyPair: currencyPair_1.CurrencyPair,
     DeliveryContract: deliveryContract_1.DeliveryContract,
     DeliverySettlement: deliverySettlement_1.DeliverySettlement,
@@ -197,6 +206,7 @@ const typeMap = {
     RepayRequest: repayRequest_1.RepayRequest,
     Repayment: repayment_1.Repayment,
     SpotAccount: spotAccount_1.SpotAccount,
+    SubAccountBalance: subAccountBalance_1.SubAccountBalance,
     SubAccountTransfer: subAccountTransfer_1.SubAccountTransfer,
     Ticker: ticker_1.Ticker,
     Trade: trade_1.Trade,

@@ -202,5 +202,29 @@ class WalletApi {
         const authSettings = ['apiv4'];
         return this.client.request(config, 'Array<WithdrawStatus>', authSettings);
     }
+    async listSubAccountBalances(opts) {
+        const localVarPath = this.client.basePath + '/wallet/sub_account_balances';
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        opts = opts || {};
+        if (opts.subUid !== undefined) {
+            localVarQueryParameters['sub_uid'] = models_1.ObjectSerializer.serialize(opts.subUid, 'string');
+        }
+        const config = {
+            method: 'GET',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = ['apiv4'];
+        return this.client.request(config, 'Array<SubAccountBalance>', authSettings);
+    }
 }
 exports.WalletApi = WalletApi;

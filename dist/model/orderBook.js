@@ -10,6 +10,11 @@ exports.OrderBook = OrderBook;
 OrderBook.discriminator = undefined;
 OrderBook.attributeTypeMap = [
     {
+        name: 'id',
+        baseName: 'id',
+        type: 'number',
+    },
+    {
         name: 'asks',
         baseName: 'asks',
         type: 'Array<Array<string>>',

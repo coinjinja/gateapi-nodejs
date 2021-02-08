@@ -1,4 +1,5 @@
 import { Contract } from '../model/contract';
+import { ContractStat } from '../model/contractStat';
 import { FundingRateRecord } from '../model/fundingRateRecord';
 import { FuturesAccount } from '../model/futuresAccount';
 import { FuturesAccountBook } from '../model/futuresAccountBook';
@@ -70,6 +71,23 @@ export declare class FuturesApi {
         response: AxiosResponse;
         body: Array<InsuranceRecord>;
     }>;
+    listContractStats(settle: 'btc' | 'usdt', contract: string, opts: {
+        from?: number;
+        interval?: '5m' | '15m' | '30m' | '1h' | '4h' | '1d';
+        limit?: number;
+    }): Promise<{
+        response: AxiosResponse;
+        body: Array<ContractStat>;
+    }>;
+    listLiquidatedOrders(settle: 'btc' | 'usdt', opts: {
+        contract?: string;
+        from?: number;
+        to?: number;
+        limit?: number;
+    }): Promise<{
+        response: AxiosResponse;
+        body: Array<FuturesLiquidate>;
+    }>;
     listFuturesAccounts(settle: 'btc' | 'usdt'): Promise<{
         response: AxiosResponse;
         body: FuturesAccount;
@@ -102,6 +120,26 @@ export declare class FuturesApi {
     updatePositionRiskLimit(settle: 'btc' | 'usdt', contract: string, riskLimit: string): Promise<{
         response: AxiosResponse;
         body: Position;
+    }>;
+    setDualMode(settle: 'btc' | 'usdt', dualMode: boolean): Promise<{
+        response: AxiosResponse;
+        body: FuturesAccount;
+    }>;
+    getDualModePosition(settle: 'btc' | 'usdt', contract: string): Promise<{
+        response: AxiosResponse;
+        body: Array<Position>;
+    }>;
+    updateDualModePositionMargin(settle: 'btc' | 'usdt', contract: string, change: string): Promise<{
+        response: AxiosResponse;
+        body: Array<Position>;
+    }>;
+    updateDualModePositionLeverage(settle: 'btc' | 'usdt', contract: string, leverage: string): Promise<{
+        response: AxiosResponse;
+        body: Array<Position>;
+    }>;
+    updateDualModePositionRiskLimit(settle: 'btc' | 'usdt', contract: string, riskLimit: string): Promise<{
+        response: AxiosResponse;
+        body: Array<Position>;
     }>;
     listFuturesOrders(settle: 'btc' | 'usdt', contract: string, status: 'open' | 'finished', opts: {
         limit?: number;

@@ -70,6 +70,11 @@ Order.attributeTypeMap = [
         type: 'Order.TimeInForce',
     },
     {
+        name: 'iceberg',
+        baseName: 'iceberg',
+        type: 'string',
+    },
+    {
         name: 'autoBorrow',
         baseName: 'auto_borrow',
         type: 'boolean',

@@ -17,6 +17,10 @@ export declare class MarginApi {
         response: AxiosResponse;
         body: Array<MarginCurrencyPair>;
     }>;
+    getMarginCurrencyPair(currencyPair: string): Promise<{
+        response: AxiosResponse;
+        body: MarginCurrencyPair;
+    }>;
     listFundingBook(currency: string): Promise<{
         response: AxiosResponse;
         body: Array<FundingBookItem>;

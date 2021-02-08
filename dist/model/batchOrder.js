@@ -85,6 +85,11 @@ BatchOrder.attributeTypeMap = [
         type: 'BatchOrder.TimeInForce',
     },
     {
+        name: 'iceberg',
+        baseName: 'iceberg',
+        type: 'string',
+    },
+    {
         name: 'autoBorrow',
         baseName: 'auto_borrow',
         type: 'boolean',

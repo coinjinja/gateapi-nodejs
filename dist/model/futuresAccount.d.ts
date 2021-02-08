@@ -6,6 +6,7 @@ export declare class FuturesAccount {
     'available'?: string;
     'point'?: string;
     'currency'?: string;
+    'inDualMode'?: boolean;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;

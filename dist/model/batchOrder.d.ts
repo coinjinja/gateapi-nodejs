@@ -14,6 +14,7 @@ export declare class BatchOrder {
     'amount'?: string;
     'price'?: string;
     'timeInForce'?: BatchOrder.TimeInForce;
+    'iceberg'?: string;
     'autoBorrow'?: boolean;
     'left'?: string;
     'fillPrice'?: string;

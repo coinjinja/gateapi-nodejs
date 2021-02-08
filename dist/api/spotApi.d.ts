@@ -1,6 +1,7 @@
 import { BatchOrder } from '../model/batchOrder';
 import { CancelOrder } from '../model/cancelOrder';
 import { CancelOrderResult } from '../model/cancelOrderResult';
+import { Currency } from '../model/currency';
 import { CurrencyPair } from '../model/currencyPair';
 import { OpenOrders } from '../model/openOrders';
 import { Order } from '../model/order';
@@ -14,6 +15,14 @@ import { AxiosResponse } from 'axios';
 export declare class SpotApi {
     protected client: ApiClient;
     constructor(client?: ApiClient);
+    listCurrencies(): Promise<{
+        response: AxiosResponse;
+        body: Array<Currency>;
+    }>;
+    getCurrency(currency: string): Promise<{
+        response: AxiosResponse;
+        body: Currency;
+    }>;
     listCurrencyPairs(): Promise<{
         response: AxiosResponse;
         body: Array<CurrencyPair>;
@@ -31,6 +40,7 @@ export declare class SpotApi {
     listOrderBook(currencyPair: string, opts: {
         interval?: string;
         limit?: number;
+        withId?: boolean;
     }): Promise<{
         response: AxiosResponse;
         body: OrderBook;
@@ -38,6 +48,7 @@ export declare class SpotApi {
     listTrades(currencyPair: string, opts: {
         limit?: number;
         lastId?: string;
+        reverse?: boolean;
     }): Promise<{
         response: AxiosResponse;
         body: Array<Trade>;

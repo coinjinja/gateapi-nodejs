@@ -54,4 +54,24 @@ Ticker.attributeTypeMap = [
         baseName: 'low_24h',
         type: 'string',
     },
+    {
+        name: 'etfNetValue',
+        baseName: 'etf_net_value',
+        type: 'string',
+    },
+    {
+        name: 'etfPreNetValue',
+        baseName: 'etf_pre_net_value',
+        type: 'string',
+    },
+    {
+        name: 'etfPreTimestamp',
+        baseName: 'etf_pre_timestamp',
+        type: 'number',
+    },
+    {
+        name: 'etfLeverage',
+        baseName: 'etf_leverage',
+        type: 'string',
+    },
 ];

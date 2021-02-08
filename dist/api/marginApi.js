@@ -32,6 +32,30 @@ class MarginApi {
         const authSettings = [];
         return this.client.request(config, 'Array<MarginCurrencyPair>', authSettings);
     }
+    async getMarginCurrencyPair(currencyPair) {
+        const localVarPath = this.client.basePath +
+            '/margin/currency_pairs/{currency_pair}'.replace('{' + 'currency_pair' + '}', encodeURIComponent(String(currencyPair)));
+        const localVarQueryParameters = {};
+        const localVarHeaderParams = Object.assign({}, this.client.defaultHeaders);
+        const produces = ['application/json'];
+        if (produces.indexOf('application/json') >= 0) {
+            localVarHeaderParams.Accept = 'application/json';
+        }
+        else {
+            localVarHeaderParams.Accept = produces.join(',');
+        }
+        if (currencyPair === null || currencyPair === undefined) {
+            throw new Error('Required parameter currencyPair was null or undefined when calling getMarginCurrencyPair.');
+        }
+        const config = {
+            method: 'GET',
+            params: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            url: localVarPath,
+        };
+        const authSettings = [];
+        return this.client.request(config, 'MarginCurrencyPair', authSettings);
+    }
     async listFundingBook(currency) {
         const localVarPath = this.client.basePath + '/margin/funding_book';
         const localVarQueryParameters = {};

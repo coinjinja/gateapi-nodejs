@@ -20,6 +20,11 @@ Trade.attributeTypeMap = [
         type: 'string',
     },
     {
+        name: 'createTimeMs',
+        baseName: 'create_time_ms',
+        type: 'string',
+    },
+    {
         name: 'side',
         baseName: 'side',
         type: 'Trade.Side',

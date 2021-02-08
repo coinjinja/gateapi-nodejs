@@ -44,4 +44,9 @@ FuturesAccount.attributeTypeMap = [
         baseName: 'currency',
         type: 'string',
     },
+    {
+        name: 'inDualMode',
+        baseName: 'in_dual_mode',
+        type: 'boolean',
+    },
 ];

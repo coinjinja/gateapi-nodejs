@@ -1,5 +1,6 @@
 import { DepositAddress } from '../model/depositAddress';
 import { LedgerRecord } from '../model/ledgerRecord';
+import { SubAccountBalance } from '../model/subAccountBalance';
 import { SubAccountTransfer } from '../model/subAccountTransfer';
 import { Transfer } from '../model/transfer';
 import { WithdrawStatus } from '../model/withdrawStatus';
@@ -55,5 +56,11 @@ export declare class WalletApi {
     }): Promise<{
         response: AxiosResponse;
         body: Array<WithdrawStatus>;
+    }>;
+    listSubAccountBalances(opts: {
+        subUid?: string;
+    }): Promise<{
+        response: AxiosResponse;
+        body: Array<SubAccountBalance>;
     }>;
 }

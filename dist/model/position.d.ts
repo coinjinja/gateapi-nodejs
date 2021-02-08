@@ -21,6 +21,7 @@ export declare class Position {
     'adlRanking'?: number;
     'pendingOrders'?: number;
     'closeOrder'?: PositionCloseOrder;
+    'mode'?: Position.Mode;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;
@@ -32,4 +33,11 @@ export declare class Position {
         baseName: string;
         type: string;
     }[];
+}
+export declare namespace Position {
+    enum Mode {
+        Single,
+        DualLong,
+        DualShort
+    }
 }

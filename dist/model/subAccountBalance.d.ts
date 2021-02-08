@@ -1,7 +1,8 @@
-export declare class OrderBook {
-    'id'?: number;
-    'asks': Array<Array<string>>;
-    'bids': Array<Array<string>>;
+export declare class SubAccountBalance {
+    'uid'?: string;
+    'available'?: {
+        [key: string]: string;
+    };
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;

@@ -1,6 +1,7 @@
 export declare class Trade {
     'id'?: string;
     'createTime'?: string;
+    'createTimeMs'?: string;
     'side'?: Trade.Side;
     'role'?: Trade.Role;
     'amount'?: string;
